@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import PaperCard from './PaperCard';
+import './About.css';
 
 const tabs = [
   { id: 'journey', label: 'Journey' },
@@ -55,95 +57,183 @@ const experienceItems = [
 ];
 
 const About = () => {
-  const [activeTab, setActiveTab] = useState('journey');
+  const [activeStage, setActiveStage] = useState(null);
+  const resumeUrl = process.env.PUBLIC_URL + '/resume.pdf';
+
+  // keyboard accessibility for stages
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === 'Escape') setActiveStage(null);
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
+
+  const stages = [
+    { id: 1, title: 'Understand', body: 'I begin by identifying the real user need, constraints and expected outcome.' },
+    { id: 2, title: 'Architect', body: 'I structure maintainable systems, clear data flows and scalable application foundations.' },
+    { id: 3, title: 'Build', body: 'I transform the design into reliable, responsive and user-focused software.' },
+    { id: 4, title: 'Evolve', body: 'I test, refine and improve the solution using feedback, analytics and emerging technologies.' },
+  ];
+
+  const principles = [
+    { id: '01', title: 'Purpose Before Complexity', body: 'Every technical decision should support a real need instead of introducing unnecessary complexity.' },
+    { id: '02', title: 'Intelligence With Responsibility', body: 'AI should enhance human decisions while remaining transparent, controlled and meaningful.' },
+    { id: '03', title: 'Scalability From the Foundation', body: 'Maintainability, modularity and reliable data flows should be considered from the beginning.' },
+    { id: '04', title: 'People at the Centre', body: 'Successful software must be technically strong and intuitive for the people who use it.' },
+  ];
+
+  const focusAreas = [
+    { title: 'Full-Stack Engineering', body: 'Designing complete digital products across modern frontend, backend and database technologies.' },
+    { title: 'AI Integration', body: 'Adding intelligent capabilities that improve discovery, automation, analysis and decision support.' },
+    { title: 'Cloud and Scalable Systems', body: 'Building maintainable applications designed for reliable deployment and future growth.' },
+    { title: 'User-Focused Engineering', body: 'Combining technical quality with clear, accessible and intuitive experiences.' },
+  ];
 
   return (
-    <main id="about" className="bg-transparent px-4 py-12 text-[var(--text-primary)] sm:px-6 lg:px-8 lg:py-20">
-      <div className="mx-auto max-w-6xl space-y-8">
-        <PaperCard className="p-8 sm:p-10">
-          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-            <div className="space-y-5">
-              <div className="overflow-hidden rounded-[1.4rem] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-3">
-                <img src={process.env.PUBLIC_URL + '/prop.jpg'} alt="Shalini portrait" className="h-[340px] w-full rounded-[1.1rem] object-cover" />
+    <main id="about" className="about-root bg-transparent px-4 py-12 text-[var(--text-primary)] sm:px-6 lg:px-8 lg:py-20">
+      <div className="mx-auto max-w-7xl">
+        {/* Editorial intro */}
+        <motion.header initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="about-intro">
+          <div className="about-meta">01 / <span className="about-meta-title">ABOUT</span></div>
+          <h1 className="about-heading">Engineering Ideas Into Meaningful Digital Experiences.</h1>
+          <p className="about-lead">I combine software engineering, creative problem-solving and emerging technologies to build intelligent, scalable and user-focused products.</p>
+        </motion.header>
+
+        {/* Portrait + story */}
+        <section className="about-editorial grid gap-10 lg:grid-cols-[0.6fr_0.95fr] lg:items-start mt-12">
+          <PaperCard className="about-portrait-card p-6">
+            <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="about-portrait-wrap">
+              <div className="about-portrait-frame">
+                <img src={process.env.PUBLIC_URL + '/prop.jpg'} alt="Shalini Madhuka, innovative software engineer" className="about-portrait-photo" />
               </div>
-              <div className="grid gap-4 sm:grid-cols-3">
-                {[
-                  { label: 'Education', value: 'University of Moratuwa' },
-                  { label: 'Focus', value: 'Full-stack product work' },
-                  { label: 'Availability', value: 'Open to opportunities' },
-                ].map((item) => (
-                  <div key={item.label} className="rounded-[1rem] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
-                    <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--text-muted)]">{item.label}</p>
-                    <p className="mt-2 text-sm font-semibold text-[var(--text-primary)]">{item.value}</p>
-                  </div>
-                ))}
-              </div>
+              <div className="about-portrait-overlay" aria-hidden="true" />
+            </motion.div>
+          </PaperCard>
+
+          <PaperCard className="about-story p-8">
+            <p className="issue-number">About</p>
+            <h2 className="about-story-title">I’m Shalini Madhuka, an Information Technology undergraduate at the University of Moratuwa with a strong interest in full-stack software engineering and intelligent digital systems.</h2>
+            <div className="about-paragraphs">
+              <p>I enjoy transforming complex requirements into practical, reliable and intuitive applications. My approach combines structured engineering, thoughtful user experience and continuous experimentation with emerging AI and cloud technologies.</p>
+              <p>Beyond writing code, I focus on understanding the real problem, designing maintainable solutions and creating digital experiences that provide meaningful value to their users.</p>
             </div>
 
-            <div className="space-y-5">
-              <p className="issue-number">About</p>
-              <h2 className="text-3xl font-semibold leading-tight tracking-[-0.02em] text-[var(--text-primary)] sm:text-4xl">I enjoy transforming complex ideas into simple, useful digital experiences.</h2>
-              <p className="max-w-2xl text-base leading-8 text-[var(--text-secondary)]">I am a motivated Information Technology undergraduate with a strong interest in software engineering, product development, and intelligent digital systems. I work across the full development process—from understanding user requirements and designing interfaces to building APIs, managing databases, and connecting complete systems.</p>
-              <p className="max-w-2xl text-base leading-8 text-[var(--text-secondary)]">My goal is not only to make applications work, but to make them feel clear, reliable, and valuable to the people who use them.</p>
+            <blockquote className="about-quote">
+              <span className="quote-mark">“</span>
+              <p className="quote-text">I don’t just build features—I engineer experiences that solve real problems.</p>
+            </blockquote>
 
-              <div className="flex flex-wrap gap-3">
-                {['Product thinking', 'Frontend systems', 'Backend engineering', 'Database design', 'UI/UX'].map((tag) => (
-                  <span key={tag} className="rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-3 py-2 text-[11px] uppercase tracking-[0.3em] text-[var(--text-secondary)]">{tag}</span>
-                ))}
-              </div>
+            <div className="mt-6 flex gap-3">
+              <button onClick={() => document.querySelector('#expertise')?.scrollIntoView({ behavior: 'smooth' })} className="btn-primary">Explore My Work</button>
+              <a href={resumeUrl} target="_blank" rel="noreferrer" className="btn-secondary">Download CV</a>
             </div>
+          </PaperCard>
+        </section>
+
+        {/* How I think: process */}
+        <section className="about-process mt-12">
+          <h3 className="section-header">How I Think</h3>
+          <div className="about-process-line" aria-hidden="true" />
+          <div className="about-process-stages">
+            {stages.map((s) => (
+              <div key={s.id} className={`about-stage ${activeStage === s.id ? 'active' : ''}`} tabIndex={0} onClick={() => setActiveStage(activeStage === s.id ? null : s.id)} onKeyDown={(e) => { if (e.key === 'Enter') setActiveStage(activeStage === s.id ? null : s.id); }}>
+                <div className="about-stage-index">0{s.id}</div>
+                <div className="about-stage-title">{s.title}</div>
+                <div className="about-stage-body">{s.body}</div>
+              </div>
+            ))}
           </div>
-        </PaperCard>
+        </section>
 
-        <PaperCard className="p-8">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border-color)] pb-4">
-            <div>
-              <p className="issue-number">Professional record</p>
-              <h3 className="section-header">Story & experience</h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {tabs.map((tab) => (
-                <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)} className={`rounded-full border px-3 py-2 text-[11px] uppercase tracking-[0.3em] transition ${activeTab === tab.id ? 'border-[var(--accent)] bg-[var(--accent)] text-[var(--bg-primary)]' : 'border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)]'}`}>
-                  {tab.label}
-                </button>
+        {/* Principles and education */}
+        <section className="about-principles-education mt-12 grid gap-8 lg:grid-cols-2">
+          <div className="about-principles">
+            <h3 className="section-header">Engineering Principles</h3>
+            <div className="about-principles-grid">
+              {principles.map((p) => (
+                <div key={p.id} className="about-principle">
+                  <div className="about-principle-num" aria-hidden="true">{p.id}</div>
+                  <div className="about-principle-body">
+                    <h4 className="about-principle-title">{p.title}</h4>
+                    <p className="about-principle-text">{p.body}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
 
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {activeTab === 'journey' && journeyItems.map((item) => (
-              <div key={item.title} className="rounded-[1rem] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-5">
-                <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--text-muted)]">{item.year}</p>
-                <h4 className="mt-2 text-lg font-semibold text-[var(--text-primary)]">{item.title}</h4>
-                <p className="mt-2 text-sm leading-7 text-[var(--text-secondary)]">{item.description}</p>
-              </div>
-            ))}
-
-            {activeTab === 'education' && educationItems.map((item) => (
-              <div key={item.title} className="rounded-[1rem] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-5">
-                <div className="flex items-center justify-between gap-3 text-[10px] uppercase tracking-[0.35em] text-[var(--text-muted)]">
-                  <span>{item.badge}</span>
-                  <span>{item.period}</span>
+          <div className="about-education">
+            <h3 className="section-header">Education & Direction</h3>
+            <div className="about-education-panel">
+              {educationItems.map((ed) => (
+                <div key={ed.title} className="about-education-item">
+                  <div className="about-education-title">
+                    <strong>{ed.title}</strong>
+                    <span className="about-education-sub">{ed.subtitle}</span>
+                  </div>
+                  <p className="about-education-desc">{ed.details}</p>
                 </div>
-                <h4 className="mt-3 text-lg font-semibold text-[var(--text-primary)]">{item.title}</h4>
-                <p className="mt-2 text-sm text-[var(--text-secondary)]">{item.subtitle}</p>
-                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{item.details}</p>
-                {item.tags && <div className="mt-4 flex flex-wrap gap-2">{item.tags.map((tag) => <span key={tag} className="rounded-full border border-[var(--border-color)] bg-[var(--bg-primary)] px-2.5 py-1 text-[10px] uppercase tracking-[0.3em] text-[var(--text-muted)]">{tag}</span>)}</div>}
-              </div>
-            ))}
+              ))}
 
-            {activeTab === 'experience' && experienceItems.map((item) => (
-              <div key={item.title} className="overflow-hidden rounded-[1rem] border border-[var(--border-color)] bg-[var(--bg-secondary)]">
-                <img src={item.image} alt={item.title} className="h-44 w-full object-cover" />
-                <div className="p-5">
-                  <h4 className="text-lg font-semibold text-[var(--text-primary)]">{item.title}</h4>
-                  <p className="mt-2 text-sm text-[var(--text-secondary)]">{item.subtitle}</p>
-                  <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{item.description}</p>
-                </div>
+              <div className="about-currently">
+                <h4>Currently Exploring</h4>
+                <ul>
+                  <li>AI-integrated applications</li>
+                  <li>Scalable full-stack architecture</li>
+                  <li>Cloud platforms and deployment</li>
+                  <li>Intelligent search and recommendation systems</li>
+                  <li>Cross-platform user experiences</li>
+                </ul>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Focus areas */}
+        <section className="about-focus mt-12">
+          <h3 className="section-header">Professional Focus Areas</h3>
+          <div className="about-focus-grid">
+            {focusAreas.map((f, i) => (
+              <motion.button key={f.title} whileHover={{ scale: 1.02 }} className={`about-focus-item`}>
+                <div className="about-focus-index">{String(i + 1).padStart(2, '0')}</div>
+                <h4 className="about-focus-title">{f.title}</h4>
+                <p className="about-focus-text">{f.body}</p>
+              </motion.button>
             ))}
           </div>
-        </PaperCard>
+        </section>
+
+        {/* Metrics + CTA */}
+        <section className="about-metrics-cta mt-12">
+          <div className="about-metrics">
+            <div className="about-metric">
+              <div className="about-metric-num" aria-hidden="true">—</div>
+              <div className="about-metric-label">PROJECTS</div>
+            </div>
+            <div className="about-metric">
+              <div className="about-metric-num" aria-hidden="true">—</div>
+              <div className="about-metric-label">TECHNOLOGIES</div>
+            </div>
+            <div className="about-metric">
+              <div className="about-metric-num" aria-hidden="true">—</div>
+              <div className="about-metric-label">CERTIFICATIONS</div>
+            </div>
+            <div className="about-metric">
+              <div className="about-metric-num">Continuous</div>
+              <div className="about-metric-label">ENGINEERING MINDSET</div>
+            </div>
+          </div>
+
+          <div className="about-cta mt-8">
+            <h3 className="section-header">Curious by Nature. Driven to Build.</h3>
+            <p className="about-cta-lead">I’m continuously learning, experimenting and looking for opportunities to create technology that makes a meaningful difference.</p>
+            <div className="mt-6 flex gap-3">
+              <button onClick={() => document.querySelector('#expertise')?.scrollIntoView({ behavior: 'smooth' })} className="btn-primary">Explore My Work</button>
+              <a href={resumeUrl} target="_blank" rel="noreferrer" className="btn-secondary">Download CV</a>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   );

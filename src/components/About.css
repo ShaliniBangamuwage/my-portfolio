@@ -1,0 +1,90 @@
+/* Component-scoped styles for About section - all selectors prefixed with about- to avoid global conflicts */
+:root {
+  --about-accent: var(--accent);
+  --about-bg: var(--bg-secondary);
+  --about-border: var(--border-color);
+  --about-text: var(--text-primary);
+  --about-muted: var(--text-secondary);
+}
+
+.about-root { }
+
+.about-intro { max-width: 64rem; }
+.about-meta { color: var(--about-muted); font-weight: 600; letter-spacing: .18em; }
+.about-meta-title { color: var(--about-text); }
+.about-heading { font-size: 2.25rem; line-height:1.05; margin-top: .5rem; color: var(--about-text); }
+.about-lead { margin-top: .75rem; color: var(--about-muted); max-width: 56rem; }
+
+/* Portrait */
+.about-portrait-card { max-width: 420px; }
+.about-portrait-frame { width: 100%; aspect-ratio: 4 / 5; overflow: hidden; border-radius: .9rem; border: 1px solid var(--about-border); background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent); }
+.about-portrait-photo { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.about-portrait-overlay { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(0deg, rgba(0,0,0,0.03), rgba(255,255,255,0.02)); mix-blend-mode: overlay; border-radius: .9rem; }
+
+.about-story .about-story-title { font-size: 1.25rem; color: var(--about-text); margin-top: .5rem; }
+.about-paragraphs p { color: var(--about-muted); margin-top: .75rem; }
+.about-quote { margin-top: 1rem; padding: 1rem; border-left: 3px solid var(--about-border); background: rgba(0,0,0,0.02); }
+.about-quote .quote-mark { font-size: 2rem; line-height: .6; color: var(--about-accent); }
+.about-quote .quote-text { margin-left: .5rem; color: var(--about-muted); }
+
+/* Process */
+.about-process .section-header { margin-bottom: .5rem; }
+.about-process-line { height: 1px; background: var(--about-border); margin: .5rem 0 1rem 0; }
+.about-process-stages { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.about-stage { background: var(--about-bg); border: 1px solid var(--about-border); padding: 1rem; border-radius: .75rem; cursor: pointer; outline: none; }
+.about-stage:focus { box-shadow: 0 0 0 3px rgba(100,100,100,0.06); }
+.about-stage-index { font-weight: 700; color: var(--about-accent); }
+.about-stage-title { margin-top: .25rem; font-weight: 700; color: var(--about-text); }
+.about-stage-body { margin-top: .5rem; color: var(--about-muted); font-size: .95rem; }
+.about-stage.active { transform: translateY(-4px); border-color: var(--about-accent); }
+
+/* Principles */
+.about-principles-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.about-principle { display:flex; gap:1rem; align-items:flex-start; background: var(--about-bg); border:1px solid var(--about-border); padding:1rem; border-radius:.75rem; }
+.about-principle-num { font-size: 2.75rem; color: rgba(255,255,255,0.03); font-weight:700; margin-right:.5rem; }
+.about-principle-title { font-weight:700; color: var(--about-text); }
+.about-principle-text { color: var(--about-muted); margin-top: .25rem; }
+
+/* Education */
+.about-education-panel { background: var(--about-bg); border: 1px solid var(--about-border); padding: 1rem; border-radius: .75rem; }
+.about-education-item { margin-bottom: .75rem; }
+.about-education-title { display:flex; justify-content:space-between; gap:1rem; align-items:center; }
+.about-education-sub { color: var(--about-muted); font-size: .9rem; }
+.about-education-desc { color: var(--about-muted); margin-top:.5rem; }
+.about-currently h4 { margin-top: .75rem; color: var(--about-text); }
+.about-currently ul { margin-top:.5rem; color: var(--about-muted); list-style: disc; padding-left:1rem; }
+
+/* Focus areas */
+.about-focus-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:1rem; margin-top:.75rem; }
+.about-focus-item { text-align:left; padding:1rem; border-radius:.75rem; border:1px solid var(--about-border); background: var(--about-bg); cursor:pointer; }
+.about-focus-index { color: var(--about-accent); font-weight:700; }
+.about-focus-title { margin-top:.25rem; color: var(--about-text); font-weight:700; }
+.about-focus-text { margin-top:.5rem; color: var(--about-muted); }
+
+/* Metrics + CTA */
+.about-metrics { display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.about-metric { background: var(--about-bg); border:1px solid var(--about-border); padding:1rem; border-radius:.75rem; min-width:160px; }
+.about-metric-num { font-size:1.5rem; font-weight:700; color: var(--about-text); }
+.about-metric-label { margin-top:.25rem; font-size:.75rem; color: var(--about-muted); letter-spacing:.12em; }
+.about-cta { margin-top:1rem; }
+.about-cta-lead { color: var(--about-muted); margin-top:.5rem; }
+
+/* Buttons */
+.btn-primary { background: var(--about-accent); color: var(--bg-primary); padding: .6rem 1rem; border-radius: .6rem; font-weight:700; }
+.btn-secondary { border:1px solid var(--about-border); padding: .6rem 1rem; border-radius: .6rem; color: var(--about-text); }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .about-process-stages { grid-template-columns: repeat(2, 1fr); }
+  .about-focus-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .about-portrait-card { max-width: 100%; }
+  .about-process-stages { grid-template-columns: 1fr; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

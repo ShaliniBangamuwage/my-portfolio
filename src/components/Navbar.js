@@ -1,20 +1,27 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import clsx from 'clsx';
 
 const navItems = [
   { href: '#home', label: 'Home' },
   { href: '#about', label: 'About' },
   { href: '#expertise', label: 'Expertise' },
-  { href: '#projects', label: 'Work' },
-  { href: '#journey', label: 'Journey' },
+
+  { href: '#experience', label: 'Journey' },
   { href: '#contact', label: 'Contact' },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    try {
+      return document.documentElement.getAttribute('data-theme') || 'dark';
+    } catch (e) {
+      return 'dark';
+    }
+  });
 
   const [active, setActive] = useState('#home');
 
@@ -50,6 +57,16 @@ const Navbar = () => {
 
   const toggleMobileMenu = useCallback(() => setMobileMenuOpen((prev) => !prev), []);
   const closeMobileMenu = useCallback(() => setMobileMenuOpen(false), []);
+  const toggleTheme = useCallback(() => {
+    setTheme((t) => {
+      const next = t === 'dark' ? 'light' : 'dark';
+      try {
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      } catch (e) {}
+      return next;
+    });
+  }, []);
   const handleAnchorClick = useCallback(
     (event, href) => {
       event.preventDefault();
@@ -87,6 +104,15 @@ const Navbar = () => {
           <a href={process.env.PUBLIC_URL + '/resume.pdf'} target="_blank" rel="noreferrer" className="ml-4 hidden rounded-full border border-[var(--border-color)] px-3 py-2 text-sm text-[var(--text-primary)] transition hover:bg-[var(--accent)]/10 md:inline-flex">
             View Resume
           </a>
+
+          <button
+            aria-label="Toggle theme"
+            aria-pressed={theme === 'light'}
+            onClick={toggleTheme}
+            className="ml-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--text-primary)] transition hover:bg-[var(--hover)]"
+          >
+            {theme === 'dark' ? <Sun size={16} aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
+          </button>
         </nav>
 
         <button type="button" onClick={toggleMobileMenu} aria-label="Toggle mobile menu" className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-primary)] transition hover:border-[var(--accent)] hover:text-[var(--accent)] md:hidden">
@@ -118,6 +144,16 @@ const Navbar = () => {
               <a href={process.env.PUBLIC_URL + '/resume.pdf'} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center justify-center rounded-full border border-[var(--border-color)] px-4 py-2 text-sm text-[var(--text-primary)] transition hover:bg-[var(--accent)]/10">
                 View Resume
               </a>
+              <button
+                aria-label="Toggle theme"
+                onClick={() => {
+                  toggleTheme();
+                  closeMobileMenu();
+                }}
+                className="mt-3 inline-flex items-center justify-center gap-2 rounded-2xl border border-[var(--border-color)] px-4 py-2 text-sm text-[var(--text-primary)] transition hover:bg-[var(--hover)]"
+              >
+                {theme === 'dark' ? <><Sun size={14} /> Light</> : <><Moon size={14} /> Dark</>}
+              </button>
             </motion.div>
           </motion.div>
         )}

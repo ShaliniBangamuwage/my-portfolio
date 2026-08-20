@@ -7,8 +7,8 @@ export const networkFlowConfig = {
   interactionStrength: 0.9,
   opacity: 0.48,
   accentColors: {
-    teal: '#5fe0c7',
-    violet: '#8a78ff',
+    teal: '',
+    violet: '',
   },
 };
 
@@ -39,6 +39,34 @@ export const useNetworkFlow = (canvasRef, options = {}) => {
   optionsRef.current = options;
 
   useEffect(() => {
+    const getCssVar = (name) =>
+      getComputedStyle(document.documentElement).getPropertyValue(name).trim() || '';
+
+    const hexToRgb = (hex) => {
+      if (!hex) return [0, 0, 0];
+      const h = hex.replace('#', '');
+      if (h.length === 3) {
+        return [parseInt(h[0] + h[0], 16), parseInt(h[1] + h[1], 16), parseInt(h[2] + h[2], 16)];
+      }
+      return [parseInt(h.substring(0, 2), 16), parseInt(h.substring(2, 4), 16), parseInt(h.substring(4, 6), 16)];
+    };
+
+    const toRgba = (color, alpha) => {
+      if (!color) return `rgba(0,0,0,${alpha})`;
+      const c = color.trim();
+      if (c.startsWith('rgba')) {
+        return c;
+      }
+      if (c.startsWith('rgb(')) {
+        return c.replace('rgb(', 'rgba(').replace(')', `,${alpha})`);
+      }
+      if (c.startsWith('#')) {
+        const [r, g, b] = hexToRgb(c);
+        return `rgba(${r},${g},${b},${alpha})`;
+      }
+      return c;
+    };
+
     const canvas = canvasRef.current;
     if (!canvas) {
       return undefined;
@@ -180,7 +208,9 @@ export const useNetworkFlow = (canvasRef, options = {}) => {
 
     const drawGrid = (time) => {
       ctx.save();
-      ctx.strokeStyle = 'rgba(119, 157, 255, 0.06)';
+      const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const base = getCssVar('--text-primary') || (theme === 'light' ? '#111' : '#fff');
+      ctx.strokeStyle = theme === 'light' ? toRgba(base, 0.06) : toRgba(base, 0.03);
       ctx.lineWidth = 1;
       const perspective = 120 + Math.sin(time * 0.00012) * 10;
       const step = 46;
@@ -211,8 +241,7 @@ export const useNetworkFlow = (canvasRef, options = {}) => {
 
     const drawPaths = (time) => {
       const connectionThreshold = config.connectionDistance;
-      const teal = config.accentColors.teal;
-      const violet = config.accentColors.violet;
+      const theme = document.documentElement.getAttribute('data-theme') || 'dark';
 
       for (let i = 0; i < nodes.length; i += 1) {
         for (let j = i + 1; j < nodes.length; j += 1) {
@@ -246,7 +275,9 @@ export const useNetworkFlow = (canvasRef, options = {}) => {
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.quadraticCurveTo(midX, midY, b.x, b.y);
-          ctx.strokeStyle = distance > connectionThreshold * 0.6 ? `${violet}${Math.round(alpha * 255).toString(16).padStart(2, '0')}` : `${teal}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`;
+          const strokeAlpha = Math.min(0.65, alpha + 0.02);
+          const baseStroke = getCssVar('--text-primary') || (theme === 'light' ? '#111' : '#fff');
+          ctx.strokeStyle = theme === 'light' ? toRgba(baseStroke, strokeAlpha) : toRgba(baseStroke, strokeAlpha * 0.6);
           ctx.lineWidth = 0.65 + influence * 0.4;
           ctx.stroke();
         }
@@ -260,9 +291,11 @@ export const useNetworkFlow = (canvasRef, options = {}) => {
         const x = pulse.from.x + (pulse.to.x - pulse.from.x) * pulse.progress;
         const y = pulse.from.y + (pulse.to.y - pulse.from.y) * pulse.progress;
         const localAlpha = 0.45 * (1 - pulse.progress);
+        const theme = document.documentElement.getAttribute('data-theme') || 'dark';
         ctx.beginPath();
         ctx.arc(x, y, 2 + pulse.progress * 2.2, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(95, 224, 199, ${localAlpha})`;
+        const basePulse = getCssVar('--text-primary') || (theme === 'light' ? '#111' : '#fff');
+        ctx.fillStyle = theme === 'light' ? toRgba(basePulse, Math.min(0.6, localAlpha * 0.9)) : toRgba(basePulse, Math.min(0.45, localAlpha * 0.6));
         ctx.fill();
       });
     };
@@ -289,13 +322,15 @@ export const useNetworkFlow = (canvasRef, options = {}) => {
         }
 
         const nodeAlpha = clamp(0.42 + contactBoost * 0.2 + influenceFromRegion(index), 0.25, 0.9);
+        const theme = document.documentElement.getAttribute('data-theme') || 'dark';
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.size + (contactBoost > 0.1 ? 0.55 : 0), 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(95, 224, 199, ${nodeAlpha})`;
+        const baseNode = getCssVar('--text-primary') || (theme === 'light' ? '#111' : '#fff');
+        ctx.fillStyle = theme === 'light' ? toRgba(baseNode, Math.min(0.8, nodeAlpha * 0.85)) : toRgba(baseNode, Math.min(0.5, nodeAlpha * 0.6));
         ctx.fill();
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.size * 0.6, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(138, 120, 255, ${nodeAlpha * 0.7})`;
+        ctx.fillStyle = theme === 'light' ? toRgba(baseNode, Math.min(0.6, nodeAlpha * 0.6)) : toRgba(baseNode, Math.min(0.34, nodeAlpha * 0.38));
         ctx.fill();
       });
     };
@@ -317,7 +352,8 @@ export const useNetworkFlow = (canvasRef, options = {}) => {
       lastTime = time;
 
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = '#030711';
+      const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+      ctx.fillStyle = getCssVar('--background') || (theme === 'light' ? 'white' : 'black');
       ctx.fillRect(0, 0, width, height);
       drawGrid(time);
       drawNoise();

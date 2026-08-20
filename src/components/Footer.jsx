@@ -35,7 +35,7 @@ const Footer = () => {
             <h4 className="text-sm font-mono text-[var(--accent)] mb-4 uppercase">Connect</h4>
             <div className="flex gap-4">
               <a
-                href="https://github.com/ShaliniMadhuka"
+                href="https://github.com/ShaliniBangamuwage"
                 target="_blank"
                 rel="noreferrer"
                 className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition"
@@ -44,7 +44,7 @@ const Footer = () => {
                 <GitBranch size={20} />
               </a>
               <a
-                href="https://www.linkedin.com/in/bangamuwage-shalini-madhuka-dilhari-b10698305/"
+                href="https://www.linkedin.com/in/shalini-bangamuwage/"
                 target="_blank"
                 rel="noreferrer"
                 className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition"
@@ -53,7 +53,7 @@ const Footer = () => {
                 <Link2 size={20} />
               </a>
               <a
-                href="mailto:madukadilhari63@gmail.com"
+                href="mailto:shalini.bangamuwage@gmail.com"
                 className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition"
                 title="Email"
               >

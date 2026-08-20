@@ -24,7 +24,12 @@ const NetworkFlowBackground = ({
     zIndex: 0,
     pointerEvents: 'none',
     overflow: 'hidden',
-    background: 'radial-gradient(circle at 20% 20%, rgba(95, 224, 199, 0.12), transparent 40%), radial-gradient(circle at 80% 15%, rgba(138, 120, 255, 0.12), transparent 36%)',
+    background: (function(){
+      const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+      return theme === 'light'
+        ? 'radial-gradient(circle at 20% 20%, rgba(0,0,0,0.06), transparent 40%), radial-gradient(circle at 80% 15%, rgba(0,0,0,0.04), transparent 36%)'
+        : 'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.03), transparent 40%), radial-gradient(circle at 80% 15%, rgba(255,255,255,0.02), transparent 36%)';
+    })(),
   };
 
   useEffect(() => {

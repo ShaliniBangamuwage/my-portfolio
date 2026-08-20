@@ -1,148 +1,147 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+// using anchor links instead of router Link to keep single-page scrolling
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ArrowRight, ChevronDown, Download, Cpu } from 'lucide-react';
+import { ArrowRight, Download, X } from 'lucide-react';
 import PaperCard from './PaperCard';
-import TechStack from './TechStack';
-import About from './About';
-import Skills from './Skills';
-import Projects from './Projects';
-import Certification from './Certification';
-import Contact from './Contact';
 
-const stats = [
-  { label: 'Projects', value: '7+' },
-  { label: 'Education', value: 'BSc (Hons) IT' },
+const metadata = [
+  { label: 'Published', value: 'July 2026' },
+  { label: 'Location', value: 'Sri Lanka' },
+  { label: 'Status', value: 'Open To Opportunities' },
 ];
 
-const highlights = ['React', 'Java', 'Frontend Engineering', 'Scalable UI'];
-
 const Hero = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
-  const [pointer, setPointer] = useState({ x: 0, y: 0 });
+  const [currentRole, setCurrentRole] = useState(0);
+  const [showVideoModal, setShowVideoModal] = useState(false);
+  const videoRef = useRef(null);
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.25 });
 
   useEffect(() => {
-    const handleMove = (event) => {
-      setPointer({ x: event.clientX, y: event.clientY });
-    };
+    const roleInterval = setInterval(() => {
+      setCurrentRole((prev) => (prev + 1) % 4);
+    }, 3200);
 
-    window.addEventListener('mousemove', handleMove);
-    return () => window.removeEventListener('mousemove', handleMove);
+    return () => clearInterval(roleInterval);
   }, []);
 
+  const openVideoModal = () => setShowVideoModal(true);
+  const closeVideoModal = () => {
+    setShowVideoModal(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
   return (
-    <div className="bg-transparent text-[var(--text-primary)]">
-      <section className="relative overflow-hidden py-16 sm:py-20">
-        <style>{`
-          @keyframes floatCode {
-            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0.7; }
-            50% { transform: translateY(-12px) translateX(8px) rotate(1deg); opacity: 1; }
-          }
-          @keyframes scanLine {
-            0% { transform: translateX(-120%); }
-            100% { transform: translateX(120%); }
-          }
-          @keyframes pulseGlow {
-            0%, 100% { transform: scale(0.96); opacity: 0.45; }
-            50% { transform: scale(1.04); opacity: 0.8; }
-          }
-          @keyframes driftGrid {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(-20px); }
-          }
-        `}</style>
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,0,0,0.08),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.05),transparent_42%),linear-gradient(135deg,rgba(255,255,255,0.12),transparent_60%)]" />
-          <div className="pointer-events-none absolute inset-0" style={{ background: `radial-gradient(circle 240px at ${pointer.x}px ${pointer.y}px, rgba(17,17,17,0.10), transparent 45%)` }} />
-          <div className="pointer-events-none absolute inset-0" style={{ background: `radial-gradient(circle 180px at ${pointer.x}px ${pointer.y}px, rgba(255,255,255,0.2), transparent 40%)` }} />
-          <div className="absolute -left-16 top-8 h-44 w-44 rounded-full border border-[var(--border-color)]/20 bg-[var(--bg-primary)]/5 blur-3xl" style={{ animation: 'pulseGlow 7s ease-in-out infinite' }} />
-          <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full border border-[var(--border-color)]/15 bg-[var(--bg-primary)]/5 blur-3xl" style={{ animation: 'pulseGlow 9s ease-in-out infinite' }} />
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--text-muted)]/35 to-transparent" />
-          <div className="absolute inset-x-0 top-0 h-[140px] bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent)]" style={{ animation: 'scanLine 8s linear infinite' }} />
-          <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(rgba(17,17,17,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(17,17,17,0.12) 1px, transparent 1px)', backgroundSize: '34px 34px', animation: 'driftGrid 18s linear infinite' }} />
-          <div className="absolute left-6 top-16 rounded border border-[var(--border-color)]/20 bg-[var(--bg-secondary)]/80 px-3 py-2 text-[10px] uppercase tracking-[0.35em] text-[var(--text-muted)] shadow-[0_8px_25px_rgba(0,0,0,0.06)] backdrop-blur" style={{ animation: 'floatCode 8s ease-in-out infinite' }}>Software Engineer</div>
-          <div className="absolute bottom-8 right-20 rounded border border-[var(--border-color)]/20 bg-[var(--bg-secondary)]/80 px-3 py-2 text-[10px] uppercase tracking-[0.35em] text-[var(--text-muted)] shadow-[0_8px_25px_rgba(0,0,0,0.06)] backdrop-blur" style={{ animation: 'floatCode 11s ease-in-out infinite' }}>Building with care</div>
-        </div>
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <motion.div ref={ref} initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, ease: 'easeOut' }} className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr] lg:items-stretch">
-            <PaperCard className="relative overflow-hidden p-8 sm:p-10">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_45%)]" />
-              <div className="relative space-y-6">
-                <div className="inline-flex items-center rounded-full border border-[var(--border-color)] bg-[var(--bg-primary)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--text-secondary)]">
-                  Available for new opportunities
-                </div>
-
-                <div className="space-y-4">
-                  <h1 className="max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">I build reliable software for modern web products.</h1>
-                  <p className="max-w-2xl text-base leading-7 text-[var(--text-secondary)]">
-                    I’m a software engineer focused on building clean, scalable web experiences with React, Java, and thoughtful UI engineering.
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap gap-3">
-                  <a href="#projects" className="inline-flex items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--accent)] px-5 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--bg-primary)] transition hover:bg-[var(--accent-dark)]">
-                    View Projects
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                  <a href="https://www.linkedin.com/in/bangamuwage-shalini-madhuka-dilhari-b10698305/" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--bg-primary)] px-5 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--text-secondary)] transition hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]">
-                    Visit LinkedIn
-                    <Download className="ml-2 h-4 w-4" />
-                  </a>
-                </div>
-
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {stats.map((item) => (
-                    <div key={item.label} className="rounded-[1rem] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
-                      <p className="text-2xl font-semibold text-[var(--text-primary)]">{item.value}</p>
-                      <p className="mt-1 text-[11px] uppercase tracking-[0.3em] text-[var(--text-muted)]">{item.label}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-4 inline-flex items-center gap-3 rounded-full border border-[var(--border-color)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-muted)]">
-                  <Cpu className="h-4 w-4 text-[var(--text-primary)]" />
-                  <span className="font-semibold text-[var(--text-primary)]">Focused on clean engineering</span>
-                </div>
-              </div>
-            </PaperCard>
-
-            <PaperCard className="overflow-hidden p-0">
-                <div className="relative">
-                <img src={process.env.PUBLIC_URL + '/prop.jpg'} alt="Shalini Madhuka" className="h-[240px] w-full object-cover grayscale sm:h-[300px]" />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[rgba(0,0,0,0.9)] via-[rgba(0,0,0,0.75)] to-transparent p-6 text-[var(--text-primary)]">
-                  <p className="text-sm uppercase tracking-[0.35em] text-[var(--text-secondary)]">Based in Sri Lanka</p>
-                  <p className="mt-2 text-xl font-semibold">Software Engineer • Frontend & Full Stack</p>
-                </div>
+    <section className="bg-[var(--bg-primary)] text-[var(--text-primary)]">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="grid gap-8 lg:grid-cols-[1.4fr_0.9fr]"
+        >
+          <PaperCard className="p-8">
+            <div className="space-y-8">
+              <div className="flex flex-wrap items-center gap-4">
+                <span className="issue-number">ISSUE 2026</span>
+                <span className="text-xs uppercase tracking-[0.35em] text-[var(--text-secondary)]">ARCHIVE RECORD #001</span>
+                <span className="text-xs uppercase tracking-[0.35em] text-[var(--text-secondary)]">VOL.07</span>
               </div>
 
-              <div className="border-t border-[var(--border-color)] bg-[var(--bg-secondary)] p-6">
-                <div className="flex flex-wrap gap-2">
-                  {highlights.map((item) => (
-                    <span key={item} className="rounded-full border border-[var(--border-color)] bg-[var(--bg-primary)] px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.25em] text-[var(--text-secondary)]">
-                      {item}
-                    </span>
-                  ))}
-                </div>
+              <div>
+                <p className="archive-title text-4xl sm:text-5xl">SOFTWARE ENGINEER ARCHIVES</p>
+                <p className="mt-3 text-sm uppercase tracking-[0.35em] text-[var(--text-secondary)]">ENGINEER PROFILE</p>
               </div>
-            </PaperCard>
-          </motion.div>
-        </div>
-      </section>
 
-      <div className="mx-auto mb-8 flex max-w-6xl justify-center px-4 sm:px-6 lg:px-8">
-        <a href="#about" className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-secondary)] shadow-sm transition hover:-translate-y-0.5 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--bg-primary)]">
-          <ChevronDown className="h-5 w-5" />
-        </a>
+              <div className="rounded-sm border border-[var(--border)] bg-[var(--surface-elevated)] p-6 text-[var(--text-primary)]">
+                <p className="font-bold uppercase tracking-[0.35em] text-[var(--text-primary)]">Name</p>
+                <p className="mt-2 text-3xl font-semibold">Shalini Madhuka</p>
+                <p className="mt-4 uppercase tracking-[0.35em] text-[var(--text-secondary)] text-sm">Full Stack Developer</p>
+              </div>
+
+              <div className="grid gap-3 border-t border-[var(--border)] pt-6 text-sm">
+                {metadata.map((item) => (
+                  <div key={item.label} className="flex items-start gap-3">
+                    <span className="w-24 font-mono uppercase tracking-[0.35em] text-[var(--text-secondary)]">{item.label}:</span>
+                    <span className="font-semibold">{item.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <a
+                  href="#expertise"
+                  className="inline-flex items-center justify-center rounded-sm border border-[var(--border-strong)] bg-transparent px-5 py-3 text-xs uppercase tracking-[0.35em] transition hover:bg-[var(--border-strong)] hover:text-[var(--text-inverse)]"
+                >
+                  View Projects
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
+                <a
+                  href={process.env.PUBLIC_URL + '/resume.pdf'}
+                  className="inline-flex items-center justify-center rounded-sm border border-[var(--border-strong)] bg-transparent px-5 py-3 text-xs uppercase tracking-[0.35em] transition hover:bg-[var(--border-strong)] hover:text-[var(--text-inverse)]"
+                >
+                  Read Resume
+                  <Download className="ml-2 h-4 w-4" />
+                </a>
+              </div>
+
+              <div className="border-t border-[#222] pt-6 text-sm">
+                <p className="font-mono uppercase tracking-[0.35em] text-[#4b453d]">Last Updated</p>
+                <p className="mt-2 text-lg font-semibold">2026.07.06</p>
+              </div>
+            </div>
+          </PaperCard>
+
+          <PaperCard className="p-8 space-y-6">
+            <div>
+              <p className="issue-number">STATUS</p>
+              <h2 className="section-header">ACTIVE</h2>
+              <p className="editor-note">Recent archive extract from the engineering report. Publication type: retro developer dossier.</p>
+            </div>
+
+            <div className="rounded-sm border border-[var(--border)] bg-[var(--surface-elevated)] p-5 text-sm leading-6">
+              <p className="font-bold uppercase tracking-[0.35em]">Archive metadata</p>
+              <div className="mt-4 space-y-3 text-[#1E1E1E]">
+                <p><span className="font-mono uppercase text-[var(--text-secondary)]">Issue:</span> 2026</p>
+                <p><span className="font-mono uppercase text-[var(--text-secondary)]">Report:</span> Software engineer archive</p>
+                <p><span className="font-mono uppercase text-[var(--text-secondary)]">Location:</span> Colombo, Sri Lanka</p>
+              </div>
+            </div>
+
+            <div className="rounded-sm border border-[var(--border)] bg-[var(--surface-elevated)] p-5 text-sm leading-6">
+              <p className="font-bold uppercase tracking-[0.35em]">Editorial note</p>
+              <p className="mt-3 text-[var(--text-primary)]">This dossier blends typewritten engineer records with archive labels, technical journal styling, and a vintage newspaper structure.</p>
+            </div>
+          </PaperCard>
+        </motion.div>
       </div>
 
-      <TechStack />
-
-      <About />
-      <Skills />
-      <Projects />
-      <Certification />
-      <Contact />
-    </div>
+      {showVideoModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--text-primary)]/90 p-4">
+          <div className="relative w-full max-w-3xl overflow-hidden rounded-sm border border-[var(--border)] bg-[var(--bg-primary)] p-4 shadow-lg shadow-black/40 sm:p-6">
+            <button
+              type="button"
+              onClick={closeVideoModal}
+              aria-label="Close video modal"
+              className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--surface-elevated)] text-[var(--text-primary)] transition hover:bg-[var(--border-strong)] hover:text-[var(--text-inverse)]"
+            >
+              <X size={18} />
+            </button>
+            <video
+              ref={videoRef}
+              className="h-[320px] w-full rounded-sm bg-[var(--text-primary)] object-cover sm:h-[420px]"
+              controls
+              autoPlay
+              src={process.env.PUBLIC_URL + '/myprofile.mp4'}
+            />
+          </div>
+        </div>
+      )}
+    </section>
   );
 };
 

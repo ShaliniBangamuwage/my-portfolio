@@ -5,18 +5,18 @@ import {
 } from 'react-icons/si';
 
 const techStack = [
-  { name: 'Java', label: 'J', bg: '#007396', type: 'text' },
-  { name: 'C', label: 'C', bg: '#00599C', type: 'text' },
-  { name: 'C++', label: 'C++', bg: '#00599C', type: 'text' },
-  { name: 'JavaScript', icon: SiJavascript, bg: '#F7DF1E', type: 'icon' },
-  { name: 'PHP', icon: SiPhp, bg: '#777BB4', type: 'icon' },
-  { name: 'React', icon: SiReact, bg: '#61DAFB', type: 'icon' },
-  { name: 'Node.js', icon: SiNodedotjs, bg: '#68A063', type: 'icon' },
-  { name: 'HTML5', icon: SiHtml5, bg: '#E34C26', type: 'icon' },
-  { name: 'CSS3', label: 'CSS', bg: '#1572B6', type: 'text' },
-  { name: 'Git', icon: SiGit, bg: '#F1502F', type: 'icon' },
-  { name: 'GitHub', icon: SiGithub, bg: '#181717', type: 'icon' },
-  { name: 'VS Code', label: 'VS', bg: '#007ACC', type: 'text' },
+  { name: 'Java', label: 'J', type: 'text' },
+  { name: 'C', label: 'C', type: 'text' },
+  { name: 'C++', label: 'C++', type: 'text' },
+  { name: 'JavaScript', icon: SiJavascript, type: 'icon' },
+  { name: 'PHP', icon: SiPhp, type: 'icon' },
+  { name: 'React', icon: SiReact, type: 'icon' },
+  { name: 'Node.js', icon: SiNodedotjs, type: 'icon' },
+  { name: 'HTML5', icon: SiHtml5, type: 'icon' },
+  { name: 'CSS3', label: 'CSS', type: 'text' },
+  { name: 'Git', icon: SiGit, type: 'icon' },
+  { name: 'GitHub', icon: SiGithub, type: 'icon' },
+  { name: 'VS Code', label: 'VS', type: 'text' },
 ];
 
 // Continuous horizontal scroll animation
@@ -43,7 +43,7 @@ const scrollStyles = `
     align-items: center;
     justify-content: center;
     border-radius: 0.75rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
   }
@@ -75,30 +75,29 @@ const TechStack = () => {
           </div>
 
           <div className="carousel-container relative">
-            <div className="carousel-track">
-              {duplicatedStack.map((tech, index) => {
-                const isLight = tech.bg === '#F7DF1E'; // JavaScript has light background
-                const Icon = tech.icon;
-                
-                return (
-                  <div
-                    key={`${tech.name}-${index}`}
-                    className="carousel-item h-16 w-16 sm:h-20 sm:w-20"
-                    style={{ 
-                      backgroundColor: tech.bg,
-                      color: isLight ? '#000' : '#fff'
-                    }}
-                    title={tech.name}
-                  >
-                    {tech.type === 'icon' && Icon ? (
-                      <Icon size={40} className="sm:scale-125" />
-                    ) : (
-                      <span className="text-2xl font-bold sm:text-3xl">{tech.label}</span>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+                    <div className="carousel-track">
+                      {duplicatedStack.map((tech, index) => {
+                        const Icon = tech.icon;
+                        return (
+                          <div
+                            key={`${tech.name}-${index}`}
+                            className="carousel-item h-16 w-16 sm:h-20 sm:w-20"
+                            style={{ 
+                              backgroundColor: 'var(--surface)',
+                              color: 'var(--text-primary)',
+                              border: '1px solid var(--border-color)'
+                            }}
+                            title={tech.name}
+                          >
+                            {tech.type === 'icon' && Icon ? (
+                              <Icon size={40} className="sm:scale-125" />
+                            ) : (
+                              <span className="text-2xl font-bold sm:text-3xl">{tech.label}</span>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
           </div>
 
           <div className="mt-6 text-center">
