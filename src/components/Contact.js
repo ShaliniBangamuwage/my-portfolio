@@ -43,9 +43,42 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (event) => {
+  const [status, setStatus] = useState('idle'); // idle, sending, success, error
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Form submitted:', formData);
+    setStatus('sending');
+
+    const formspreeId = process.env.REACT_APP_FORMSPREE_ID || '';
+    if (!formspreeId) {
+      // no Formspree ID provided — fallback to console and show message
+      console.warn('No Formspree ID set. Set REACT_APP_FORMSPREE_ID in environment to enable email delivery.');
+      setStatus('error');
+      return;
+    }
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus('error');
+    }
   };
 
   return (
@@ -146,9 +179,9 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="inline-flex w-full items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--surface-elevated)] px-6 py-3 text-sm uppercase tracking-[0.35em] text-[var(--text-primary)] transition hover:bg-[var(--border-strong)] hover:text-[var(--text-inverse)]"
+                    className="inline-flex w-full items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--surface-elevated)] px-6 py-3 text-sm uppercase tracking-[0.35em] text-[var(--text-primary)] transition hover:bg-[var(--border-strong)] hover:text-[var(--text-inverse)]"
                 >
-                  Send Message
+                    {status === 'sending' ? 'Sending…' : status === 'success' ? 'Message sent' : 'Send Message'}
                 </button>
               </form>
             </div>
