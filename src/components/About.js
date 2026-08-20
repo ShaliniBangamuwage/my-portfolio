@@ -1,447 +1,151 @@
-import React, { useState, useEffect, useRef } from "react";
-import '../styles/about.css';
+import React, { useState } from 'react';
+import PaperCard from './PaperCard';
+
+const tabs = [
+  { id: 'journey', label: 'Journey' },
+  { id: 'education', label: 'Education' },
+  { id: 'experience', label: 'Experience' },
+];
+
+const journeyItems = [
+  {
+    year: 'Feb 2026 — present',
+    title: 'Director of Membership Development and Volunteer Coordination',
+    description: 'Lead membership engagement and volunteer coordination initiatives for IEEE WIE Student Branch Affinity Group of University of Moratuwa. Coordinate volunteer assignments, event logistics, partnership outreach, and internal communication while supporting member onboarding and participation across branch activities.',
+  },
+  {
+    year: 'Mar 2026 — present',
+    title: 'Lead of Logistic Committee',
+    description: 'Lead logistics planning and coordination for IEEE Industry Applications Society student branch events and technical activities. Coordinate venues, schedules, equipment, volunteer assignments, and operational workflows to support smooth execution.',
+  },
+  {
+    year: 'Mar 2026 — present',
+    title: 'Member of Robotics and Automation Society',
+    description: 'Participate in robotics, automation, and engineering-focused student activities. Support technical events, workshops, and collaborative initiatives while expanding knowledge in robotics, embedded systems, and engineering problem-solving.',
+  },
+  {
+    year: 'Aug 2026 — present',
+    title: 'Member, IEEE Microwave Theory & Technology Society',
+    description: 'Engage in MTT-S activities, workshops, seminars, and professional development events. Collaborate with students and professionals to enhance knowledge in RF engineering, microwave systems, and wireless communication technologies.',
+  },
+];
+
+const educationItems = [
+  {
+    badge: 'Current',
+    period: '2023 — present',
+    title: 'BSc (Hons) in Information Technology',
+    subtitle: 'University of Moratuwa — Faculty of Information Technology',
+    details: 'Focused on software engineering, systems design, and applied computing with a current GPA of 3.826.',
+    tags: ['Full-Stack', 'Mobile', 'Databases'],
+  },
+  {
+    badge: 'School',
+    period: '2014 — 2022',
+    title: "St. Thomas' Girls' High School",
+    subtitle: 'G.C.E. Advanced Level — Physical Science stream',
+    details: 'Completed studies with A, A, B results and a strong foundation in analytical problem solving.',
+  },
+];
+
+const experienceItems = [
+  { image: process.env.PUBLIC_URL + '/lseg.jpg', title: 'LSEG', subtitle: 'Technology & innovation visit', description: 'Explored how modern financial platforms combine product thinking, reliability, and data-driven systems.' },
+  { image: process.env.PUBLIC_URL + '/24.jpg', title: 'Zone 24x7', subtitle: 'AI/ML solutions', description: 'Observed how intelligent systems are shaped for real-world enterprise needs and customer experience.' },
+  { image: process.env.PUBLIC_URL + '/wso2s.jpg', title: 'WSO2', subtitle: 'Open-source enterprise tools', description: 'Learned about scalable integrations, APIs, and the role of open-source software in modern engineering.' },
+];
 
 const About = () => {
-  const [activeTab, setActiveTab] = useState("journey");
-  const [activeGallery, setActiveGallery] = useState("all");
-
-  // Gallery images data with categories
-  const galleryImages = [
-    { id: 1, src: process.env.PUBLIC_URL + '/lseg.jpg', title: "LSEG Technology Visit", desc: "Exploring financial technology innovations", category: "company" },
-    { id: 2, src: process.env.PUBLIC_URL + '/24.jpg', title: "Zone 24x7 AI Labs", desc: "Learning AI/ML enterprise solutions", category: "company" },
-    { id: 3, src: process.env.PUBLIC_URL + '/wso2s.jpg', title: "WSO2 Innovation Hub", desc: "Open-source technology exploration", category: "company" },
-    { id: 4, src: process.env.PUBLIC_URL + '/open.jpg', title: "IEEE Open Week", desc: "Organizing tech exhibitions and workshops", category: "volunteer" },
-    { id: 5, src: process.env.PUBLIC_URL + '/mercorn.jpg', title: "IEEE MERCON Conference", desc: "Supporting international tech conference", category: "volunteer" },
-    { id: 6, src: process.env.PUBLIC_URL + '/robo.jpg', title: "IEEE Robotic Day", desc: "Coordinating robotics demonstrations", category: "volunteer" },
-    { id: 7, src: process.env.PUBLIC_URL + '/hackelite.jpg', title: "IEEE Hackelite", desc: "Managing hackathon operations", category: "volunteer" },
-    { id: 8, src: process.env.PUBLIC_URL + '/fit.jpg', title: "University Squad", desc: "Late night coding sessions with friends", category: "memories" },
-    { id: 9, src: process.env.PUBLIC_URL + '/hardware.jpg', title: "Team spirit", desc: "First Year Hardware project squad", category: "memories" },
-    { id: 10, src: process.env.PUBLIC_URL + '/mer.jpeg', title: "Project Celebration", desc: "Celebrating successful project", category: "memories" },
-    { id: 11, src: process.env.PUBLIC_URL + '/zone.jpeg', title: "Study Group", desc: "Learning together, growing together", category: "memories" },
-    { id: 12, src: process.env.PUBLIC_URL + '/IEEE.jpeg', title: "Tech Event", desc: "Making memories at tech events", category: "memories" }
-  ];
-
-  const filteredImages = activeGallery === "all" 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === activeGallery);
+  const [activeTab, setActiveTab] = useState('journey');
 
   return (
-    <div className="app">
-      {/* Hero Section */}
-      <section className="hero-section" id="about">
-        <div className="container">
-          <div className="section-header">
-            <span className="tag">DISCOVER</span>
-            <h1 className="main-title">
-              Building the <span className="gradient">Future</span>
-              <br />One Line at a Time
-            </h1>
-            <p className="hero-subtitle">
-              Software Developer • IEEE Member • Innovation Enthusiast
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Profile Section */}
-      <section className="profile-section">
-        <div className="container">
-          <div className="profile-grid">
-            <div className="profile-image-wrapper">
-              <div className="profile-image">
-                <img 
-                  src={process.env.PUBLIC_URL + "/prop.jpg"} 
-                  alt="Shalini Madhuka" 
-                />
-                <div className="image-overlay">
-                  <div className="stats-grid">
-                    <div className="stat-item">
-                      <span className="stat-number">15+</span>
-                      <span className="stat-label">Projects</span>
-                    </div>
-                    <div className="stat-item">
-                      <span className="stat-number">5+</span>
-                      <span className="stat-label">Events</span>
-                    </div>
-                    <div className="stat-item">
-                      <span className="stat-number">174</span>
-                      <span className="stat-label">Scholarship</span>
-                    </div>
-                  </div>
-                </div>
+    <main id="about" className="bg-transparent px-4 py-12 text-[var(--text-primary)] sm:px-6 lg:px-8 lg:py-20">
+      <div className="mx-auto max-w-6xl space-y-8">
+        <PaperCard className="p-8 sm:p-10">
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+            <div className="space-y-5">
+              <div className="overflow-hidden rounded-[1.4rem] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-3">
+                <img src={process.env.PUBLIC_URL + '/prop.jpg'} alt="Shalini portrait" className="h-[340px] w-full rounded-[1.1rem] object-cover" />
               </div>
-              <div className="profile-badge">
-                <span className="badge-icon">⚡</span>
-                <span>Available for opportunities</span>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {[
+                  { label: 'Education', value: 'University of Moratuwa' },
+                  { label: 'Focus', value: 'Full-stack product work' },
+                  { label: 'Availability', value: 'Open to opportunities' },
+                ].map((item) => (
+                  <div key={item.label} className="rounded-[1rem] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
+                    <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--text-muted)]">{item.label}</p>
+                    <p className="mt-2 text-sm font-semibold text-[var(--text-primary)]">{item.value}</p>
+                  </div>
+                ))}
               </div>
             </div>
-            
-            <div className="profile-content">
-              <span className="subtitle">SOFTWARE DEVELOPER & IEEE MEMBER</span>
-              <h2>Hi, I'm <span className="gradient">Shalini Madhuka</span></h2>
-              <p className="lead-text">
-                A passionate software developer and active IEEE member, currently pursuing BSc (Hons) 
-                in Information Technology at the University of Moratuwa.
-              </p>
-              <p>
-                I specialize in React Native, Java, and modern web technologies, creating solutions 
-                that blend functionality with exceptional user experiences. Beyond coding, I'm 
-                actively involved in the tech community through IEEE, organizing events and fostering 
-                innovation.
-              </p>
 
-              {/* Download Resume Button */}
-              <a 
-                href={process.env.PUBLIC_URL + "/resume.pdf"} 
-                download="resume.pdf" 
-                className="download-btn"
-              >
-                Download Resume
-              </a>
+            <div className="space-y-5">
+              <p className="issue-number">About</p>
+              <h2 className="text-3xl font-semibold leading-tight tracking-[-0.02em] text-[var(--text-primary)] sm:text-4xl">I enjoy transforming complex ideas into simple, useful digital experiences.</h2>
+              <p className="max-w-2xl text-base leading-8 text-[var(--text-secondary)]">I am a motivated Information Technology undergraduate with a strong interest in software engineering, product development, and intelligent digital systems. I work across the full development process—from understanding user requirements and designing interfaces to building APIs, managing databases, and connecting complete systems.</p>
+              <p className="max-w-2xl text-base leading-8 text-[var(--text-secondary)]">My goal is not only to make applications work, but to make them feel clear, reliable, and valuable to the people who use them.</p>
 
-              <div className="highlights">
-                <div className="highlight-item">
-                  <div className="icon-wrapper">🎓</div>
-                  <div>
-                    <h4>Academic Excellence</h4>
-                    <p>O/L: 9A • A/L: A2B (1.89 Z-score)</p>
-                  </div>
-                </div>
-                <div className="highlight-item">
-                  <div className="icon-wrapper">🏆</div>
-                  <div>
-                    <h4>Scholarship Holder</h4>
-                    <p>Pass 174 </p>
-                  </div>
-                </div>
-                <div className="highlight-item">
-                  <div className="icon-wrapper">🤝</div>
-                  <div>
-                    <h4>IEEE Active Member</h4>
-                    <p>Robotics & Automation Society 25/26</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="core-values">
-                <div className="value-card">
-                  <span className="value-icon">💡</span>
-                  <h4>Innovation</h4>
-                  <p>Creating cutting-edge solutions</p>
-                </div>
-                <div className="value-card">
-                  <span className="value-icon">🤝</span>
-                  <h4>Community</h4>
-                  <p>Building together, growing together</p>
-                </div>
-                <div className="value-card">
-                  <span className="value-icon">🎯</span>
-                  <h4>Impact</h4>
-                  <p>Making a real difference</p>
-                </div>
+              <div className="flex flex-wrap gap-3">
+                {['Product thinking', 'Frontend systems', 'Backend engineering', 'Database design', 'UI/UX'].map((tag) => (
+                  <span key={tag} className="rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] px-3 py-2 text-[11px] uppercase tracking-[0.3em] text-[var(--text-secondary)]">{tag}</span>
+                ))}
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </PaperCard>
 
-      {/* Tabs Section */}
-      <section className="tabs-section">
-        <div className="container">
-          <div className="tabs-header">
-            <button 
-              className={`tab-btn ${activeTab === "journey" ? "active" : ""}`}
-              onClick={() => setActiveTab("journey")}
-            >
-              My Journey
-            </button>
-            <button 
-              className={`tab-btn ${activeTab === "education" ? "active" : ""}`}
-              onClick={() => setActiveTab("education")}
-            >
-              Education
-            </button>
-            <button 
-              className={`tab-btn ${activeTab === "experience" ? "active" : ""}`}
-              onClick={() => setActiveTab("experience")}
-            >
-              Experience
-            </button>
-            <button 
-              className={`tab-btn ${activeTab === "volunteer" ? "active" : ""}`}
-              onClick={() => setActiveTab("volunteer")}
-            >
-              Volunteering
-            </button>
+        <PaperCard className="p-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--border-color)] pb-4">
+            <div>
+              <p className="issue-number">Professional record</p>
+              <h3 className="section-header">Story & experience</h3>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {tabs.map((tab) => (
+                <button key={tab.id} type="button" onClick={() => setActiveTab(tab.id)} className={`rounded-full border px-3 py-2 text-[11px] uppercase tracking-[0.3em] transition ${activeTab === tab.id ? 'border-[var(--accent)] bg-[var(--accent)] text-[var(--bg-primary)]' : 'border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:border-[var(--accent)] hover:text-[var(--accent)]'}`}>
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="tabs-content">
-            {activeTab === "journey" && (
-              <div className="timeline">
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-content">
-                    <span className="timeline-year">2025 - Present</span>
-                    <h3>IEEE RAS Member 25/26</h3>
-                    <p>Active member of IEEE Robotics and Automation Society, contributing to innovative projects and community initiatives.</p>
-                  </div>
-                </div>
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-content">
-                    <span className="timeline-year">2024</span>
-                    <h3>IEEE Event Volunteer</h3>
-                    <p>Volunteered in multiple IEEE events including Open Week, MERCON, Robotic Day, and Hackelite, gaining valuable organizational experience.</p>
-                  </div>
-                </div>
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-content">
-                    <span className="timeline-year">2024</span>
-                    <h3>Industry Exposure</h3>
-                    <p>Visited leading tech companies: LSEG (FinTech), Zone 24x7 (AI/ML), and WSO2 (Open Source), gaining industry insights.</p>
-                  </div>
-                </div>
-                <div className="timeline-item">
-                  <div className="timeline-dot"></div>
-                  <div className="timeline-content">
-                    <span className="timeline-year">2023 - Present</span>
-                    <h3>University of Moratuwa</h3>
-                    <p>Pursuing BSc (Hons) in IT, focusing on Software Development, Mobile Apps, and AI/ML technologies.</p>
-                  </div>
-                </div>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {activeTab === 'journey' && journeyItems.map((item) => (
+              <div key={item.title} className="rounded-[1rem] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-5">
+                <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--text-muted)]">{item.year}</p>
+                <h4 className="mt-2 text-lg font-semibold text-[var(--text-primary)]">{item.title}</h4>
+                <p className="mt-2 text-sm leading-7 text-[var(--text-secondary)]">{item.description}</p>
               </div>
-            )}
+            ))}
 
-            {activeTab === "education" && (
-              <div className="education-grid">
-                <div className="edu-card featured">
-                  <div className="edu-header">
-                    <span className="edu-badge">Current</span>
-                    <span className="edu-year">2023 - Present</span>
-                  </div>
-                  <h3>BSc (Hons) in Information Technology</h3>
-                  <h4>University of Moratuwa</h4>
-                  <p>Specializing in Software Engineering, Mobile Development, and Web Technologies</p>
-                  <div className="edu-highlights">
-                    <span className="highlight-tag">Full Stack Development</span>
-                    <span className="highlight-tag">Mobile Apps</span>
-                    <span className="highlight-tag">AI/ML</span>
-                  </div>
+            {activeTab === 'education' && educationItems.map((item) => (
+              <div key={item.title} className="rounded-[1rem] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-5">
+                <div className="flex items-center justify-between gap-3 text-[10px] uppercase tracking-[0.35em] text-[var(--text-muted)]">
+                  <span>{item.badge}</span>
+                  <span>{item.period}</span>
                 </div>
-
-                <div className="edu-card">
-                  <div className="edu-header">
-                    <span className="edu-badge achievement">🏆 Scholarship</span>
-                    <span className="edu-year">2023</span>
-                  </div>
-                  <h3>Scholarship Achievement</h3>
-                  <h4>Pass 174 - Merit Based</h4>
-                  <p>Awarded scholarship for academic excellence and outstanding performance in competitive examinations.</p>
-                </div>
-
-                <div className="edu-card">
-                  <div className="edu-header">
-                    <span className="edu-badge success">Excellence</span>
-                    <span className="edu-year">2020 - 2022</span>
-                  </div>
-                  <h3>G.C.E Advanced Level</h3>
-                  <h4>Mathematics Stream</h4>
-                  <div className="results">
-                    <div className="result-item">
-                      <span className="result-label">Results:</span>
-                      <span className="result-value">A2B</span>
-                    </div>
-                    <div className="result-item">
-                      <span className="result-label">Z-Score:</span>
-                      <span className="result-value">1.89</span>
-                    </div>
-                  </div>
-                  <p>Strong foundation in analytical thinking and problem-solving.</p>
-                </div>
-
-                <div className="edu-card">
-                  <div className="edu-header">
-                    <span className="edu-badge success">9A</span>
-                    <span className="edu-year">2019</span>
-                  </div>
-                  <h3>G.C.E Ordinary Level</h3>
-                  <h4>Outstanding Achievement</h4>
-                  <p>Achieved 9A passes, showcasing excellence across Mathematics, Science, and Languages.</p>
-                </div>
+                <h4 className="mt-3 text-lg font-semibold text-[var(--text-primary)]">{item.title}</h4>
+                <p className="mt-2 text-sm text-[var(--text-secondary)]">{item.subtitle}</p>
+                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{item.details}</p>
+                {item.tags && <div className="mt-4 flex flex-wrap gap-2">{item.tags.map((tag) => <span key={tag} className="rounded-full border border-[var(--border-color)] bg-[var(--bg-primary)] px-2.5 py-1 text-[10px] uppercase tracking-[0.3em] text-[var(--text-muted)]">{tag}</span>)}</div>}
               </div>
-            )}
+            ))}
 
-            {activeTab === "experience" && (
-              <div className="experience-section">
-                <div className="company-visit">
-                  <div className="visit-header">
-                    <img src="lseg.jpg" alt="LSEG" className="company-logo" />
-                    <div>
-                      <h3>London Stock Exchange Group (LSEG)</h3>
-                      <p className="visit-type">Technology & Innovation Visit</p>
-                    </div>
-                  </div>
-                  <p>Explored cutting-edge financial technology, high-frequency trading systems, and data analytics solutions driving modern financial markets.</p>
-                  <div className="visit-tags">
-                    <span>FinTech</span>
-                    <span>Trading Systems</span>
-                    <span>Data Analytics</span>
-                  </div>
-                </div>
-
-                <div className="company-visit">
-                  <div className="visit-header">
-                    <img src="zone.jpeg" alt="Zone 24x7" className="company-logo" />
-                    <div>
-                      <h3>Zone 24x7</h3>
-                      <p className="visit-type">AI/ML Solutions Experience</p>
-                    </div>
-                  </div>
-                  <p>Gained insights into AI/ML applications in customer service, virtual assistants, and enterprise automation.</p>
-                  <div className="visit-tags">
-                    <span>AI/ML</span>
-                    <span>NLP</span>
-                    <span>Automation</span>
-                  </div>
-                </div>
-
-                <div className="company-visit">
-                  <div className="visit-header">
-                    <img src="wso2.jpg" alt="WSO2" className="company-logo" />
-                    <div>
-                      <h3>WSO2</h3>
-                      <p className="visit-type">Open Source Enterprise Solutions</p>
-                    </div>
-                  </div>
-                  <p>Learned about enterprise integration, API management, and the power of open-source in building scalable systems.</p>
-                  <div className="visit-tags">
-                    <span>Open Source</span>
-                    <span>API Management</span>
-                    <span>Integration</span>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "volunteer" && (
-              <div className="volunteer-section">
-                <div className="volunteer-header">
-                  <div className="ieee-badge">
-                    <span className="ieee-logo">⚡</span>
-                    <div>
-                      <h3>IEEE Robotics & Automation Society</h3>
-                      <p>Active Member 2025/2026</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="volunteer-grid">
-                  <div className="volunteer-card">
-                    <div className="volunteer-icon">🌐</div>
-                    <h4>IEEE Open Week</h4>
-                    <p>Organized tech exhibitions, managed workshops, and coordinated student engagement activities.</p>
-                    <span className="volunteer-role">Event Coordinator</span>
-                  </div>
-
-                  <div className="volunteer-card">
-                    <div className="volunteer-icon">📡</div>
-                    <h4>IEEE MERCON</h4>
-                    <p>Supported international conference operations, assisted speakers, and managed technical sessions.</p>
-                    <span className="volunteer-role">Conference Support</span>
-                  </div>
-
-                  <div className="volunteer-card">
-                    <div className="volunteer-icon">🤖</div>
-                    <h4>IEEE Robotic Day</h4>
-                    <p>Coordinated robotics demonstrations, managed competitions, and engaged with participants.</p>
-                    <span className="volunteer-role">Competition Manager</span>
-                  </div>
-
-                  <div className="volunteer-card">
-                    <div className="volunteer-icon">💻</div>
-                    <h4>IEEE Hackelite</h4>
-                    <p>Managed hackathon operations, supported teams, and ensured smooth event execution.</p>
-                    <span className="volunteer-role">Operations Lead</span>
-                  </div>
-                </div>
-
-                <div className="volunteer-impact">
-                  <h3>Community Impact</h3>
-                  <div className="impact-stats">
-                    <div className="impact-item">
-                      <span className="impact-number">4+</span>
-                      <span className="impact-label">Events Organized</span>
-                    </div>
-                    <div className="impact-item">
-                      <span className="impact-number">500+</span>
-                      <span className="impact-label">Students Reached</span>
-                    </div>
-                    <div className="impact-item">
-                      <span className="impact-number">100+</span>
-                      <span className="impact-label">Hours Volunteered</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Photo Gallery */}
-      <section className="gallery-section">
-        <div className="container">
-          <h2 className="section-title">Moments & <span className="gradient">Memories</span></h2>
-          <p className="section-subtitle">Capturing my journey through tech, volunteering, and friendship</p>
-          
-          <div className="gallery-filters">
-            <button 
-              className={`filter-btn ${activeGallery === "all" ? "active" : ""}`}
-              onClick={() => setActiveGallery("all")}
-            >
-              All
-            </button>
-            <button 
-              className={`filter-btn ${activeGallery === "company" ? "active" : ""}`}
-              onClick={() => setActiveGallery("company")}
-            >
-              Company Visits
-            </button>
-            <button 
-              className={`filter-btn ${activeGallery === "volunteer" ? "active" : ""}`}
-              onClick={() => setActiveGallery("volunteer")}
-            >
-              IEEE Events
-            </button>
-            <button 
-              className={`filter-btn ${activeGallery === "memories" ? "active" : ""}`}
-              onClick={() => setActiveGallery("memories")}
-            >
-              Friends & Fun
-            </button>
-          </div>
-          
-          <div className="gallery-grid">
-            {filteredImages.map((image, index) => (
-              <div 
-                key={image.id} 
-                className="gallery-item"
-                style={{ animationDelay: `${index * 0.05}s` }}
-              >
-                <img src={image.src} alt={image.title} />
-                <div className="gallery-overlay">
-                  <h4>{image.title}</h4>
-                  <p>{image.desc}</p>
+            {activeTab === 'experience' && experienceItems.map((item) => (
+              <div key={item.title} className="overflow-hidden rounded-[1rem] border border-[var(--border-color)] bg-[var(--bg-secondary)]">
+                <img src={item.image} alt={item.title} className="h-44 w-full object-cover" />
+                <div className="p-5">
+                  <h4 className="text-lg font-semibold text-[var(--text-primary)]">{item.title}</h4>
+                  <p className="mt-2 text-sm text-[var(--text-secondary)]">{item.subtitle}</p>
+                  <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">{item.description}</p>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-   
-
-    </div>
+        </PaperCard>
+      </div>
+    </main>
   );
 };
 

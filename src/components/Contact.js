@@ -1,208 +1,84 @@
-import React, { useState } from "react";
-import "../App.css";
-import '../styles/contact.css';
+import React, { useState } from 'react';
+import { Mail, Phone } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import PaperCard from './PaperCard';
 
+const contactMethods = [
+  { icon: Mail, title: 'Email', value: 'madukadilhari63@gmail.com', link: 'mailto:madukadilhari63@gmail.com' },
+  { icon: FaLinkedin, title: 'LinkedIn', value: 'Connect with me', link: 'https://www.linkedin.com/in/bangamuwage-shalini-madhuka-dilhari-b10698305/' },
+  { icon: FaGithub, title: 'GitHub', value: 'View my work', link: 'https://github.com/ShaliniMadhuka' },
+  { icon: Phone, title: 'Phone', value: '0760273368', link: 'tel:0760273368' },
+];
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
 
-  const [hoveredCard, setHoveredCard] = useState(null);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Form submitted:', formData);
   };
-
-  const contactMethods = [
-    {
-      icon: "📧",
-      title: "Email",
-      value: "madukadilhari63@gmail.com",
-      link: "mailto:madukadilhari63@gmail.com",
-      color: "#ff6b6b"
-    },
-    {
-      icon: "💼",
-      title: "LinkedIn",
-      value: "Connect with me",
-      link: "https://www.linkedin.com/in/bangamuwage-shalini-madhuka-dilhari-b10698305/",
-      color: "#0077b5"
-    },
-    {
-      icon: "💻",
-      title: "GitHub",
-      value: "View my projects",
-      link: "https://github.com/ShaliniMadhuka",
-      color: "#333"
-    },
-    {
-      icon: "📱",
-      title: "Phone",
-      value: "0760273368",
-      link: "tel:0760273368",
-      color: "#25d366"
-    }
-  ];
 
   return (
-    <section className="contact" id="contact">
-      <div className="contact-container">
-        {/* Animated Background */}
-        <div className="contact-bg-animation">
-          <div className="circle circle-1"></div>
-          <div className="circle circle-2"></div>
-          <div className="circle circle-3"></div>
+    <section className="bg-transparent px-4 py-16 text-[var(--text-primary)] sm:px-6 lg:px-8 lg:py-20" id="contact">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-10 max-w-2xl">
+          <p className="issue-number">Let’s connect</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-[-0.02em] text-[var(--text-primary)] sm:text-4xl">Have an idea, opportunity, or project worth building? Let’s talk.</h2>
+          <p className="mt-3 text-base leading-8 text-[var(--text-secondary)]">I am open to internships, collaborative projects, software-development opportunities, and conversations about technology, product design, and innovation.</p>
         </div>
 
-        {/* Section Header */}
-        <div className="contact-header">
-          <div className="section-badge">
-            <span className="badge-dot"></span>
-            <span className="badge-text">Get In Touch</span>
-          </div>
-          <h2 className="contact-title">
-            Let's Create Something <span className="gradient-text">Amazing</span>
-          </h2>
-          <p className="contact-subtitle">
-            Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
-          </p>
-        </div>
+        <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <PaperCard className="space-y-3 p-6">
+            {contactMethods.map((method) => {
+              const Icon = method.icon;
+              return (
+                <a key={method.title} href={method.link} target={method.link.startsWith('http') ? '_blank' : undefined} rel={method.link.startsWith('http') ? 'noreferrer' : undefined} className="group flex items-center gap-4 rounded-[1rem] border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-4 transition hover:-translate-y-0.5 hover:border-[var(--accent)]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[0.9rem] border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--accent)]">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] uppercase tracking-[0.35em] text-[var(--text-muted)]">{method.title}</p>
+                    <p className="mt-1 text-base font-semibold text-[var(--text-primary)]">{method.value}</p>
+                  </div>
+                  <span className="text-xl text-[var(--text-muted)] transition group-hover:text-[var(--text-primary)]">→</span>
+                </a>
+              );
+            })}
+          </PaperCard>
 
-        <div className="contact-content">
-          {/* Contact Methods Grid */}
-          <div className="contact-methods">
-            {contactMethods.map((method, index) => (
-              <a
-                key={index}
-                href={method.link}
-                target={method.link.startsWith('http') ? "_blank" : undefined}
-                rel={method.link.startsWith('http') ? "noreferrer" : undefined}
-                className="contact-card"
-                onMouseEnter={() => setHoveredCard(index)}
-                onMouseLeave={() => setHoveredCard(null)}
-                style={{
-                  animationDelay: `${index * 0.1}s`
-                }}
-              >
-                <div className="card-icon-wrapper">
-                  <span className="card-icon">{method.icon}</span>
-                  <div 
-                    className="icon-glow"
-                    style={{ background: method.color }}
-                  ></div>
-                </div>
-                <h3 className="card-title">{method.title}</h3>
-                <p className="card-value">{method.value}</p>
-                <div className="card-arrow">
-                  <span>→</span>
-                </div>
-                <div 
-                  className="card-border"
-                  style={{
-                    opacity: hoveredCard === index ? 1 : 0,
-                    background: `linear-gradient(135deg, ${method.color}, transparent)`
-                  }}
-                ></div>
-              </a>
-            ))}
-          </div>
-
-          {/* Contact Form */}
-          <div className="contact-form-wrapper">
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <div className="form-header">
-                <h3>Send a Message</h3>
-                <p>I'll get back to you within 24 hours</p>
+          <PaperCard className="p-6">
+            <form className="space-y-5" onSubmit={handleSubmit}>
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className="block text-sm text-[var(--text-secondary)]">
+                  <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.35em]">Name</span>
+                  <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="John Doe" required className="w-full rounded-[0.9rem] border border-[var(--border-color)] bg-[var(--bg-primary)] px-4 py-3 text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)]" />
+                </label>
+                <label className="block text-sm text-[var(--text-secondary)]">
+                  <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.35em]">Email</span>
+                  <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="john@example.com" required className="w-full rounded-[0.9rem] border border-[var(--border-color)] bg-[var(--bg-primary)] px-4 py-3 text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)]" />
+                </label>
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="name">Your Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="John Doe"
-                    required
-                  />
-                  <div className="input-border"></div>
-                </div>
+              <label className="block text-sm text-[var(--text-secondary)]">
+                <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.35em]">Subject</span>
+                <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="Project collaboration" required className="w-full rounded-[0.9rem] border border-[var(--border-color)] bg-[var(--bg-primary)] px-4 py-3 text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)]" />
+              </label>
 
-                <div className="form-group">
-                  <label htmlFor="email">Email Address</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="john@example.com"
-                    required
-                  />
-                  <div className="input-border"></div>
-                </div>
-              </div>
+              <label className="block text-sm text-[var(--text-secondary)]">
+                <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.35em]">Message</span>
+                <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Tell me about your idea..." rows="5" required className="w-full rounded-[0.9rem] border border-[var(--border-color)] bg-[var(--bg-primary)] px-4 py-3 text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)]" />
+              </label>
 
-              <div className="form-group">
-                <label htmlFor="subject">Subject</label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  placeholder="Project Collaboration"
-                  required
-                />
-                <div className="input-border"></div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell me about your project..."
-                  rows="5"
-                  required
-                ></textarea>
-                <div className="input-border"></div>
-              </div>
-
-              <button type="submit" className="submit-button">
-                <span className="button-text">Send Message</span>
-                <span className="button-icon">✈️</span>
-                <div className="button-shine"></div>
-              </button>
+              <button type="submit" className="inline-flex w-full items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--accent)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-[var(--bg-primary)] transition hover:bg-[var(--accent-dark)]">Send message</button>
             </form>
-
-            {/* Social Links */}
-            <div className="social-links">
-              <p className="social-title">Or find me on</p>
-             
-            </div>
-          </div>
+          </PaperCard>
         </div>
       </div>
-
-      
     </section>
   );
 };

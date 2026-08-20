@@ -17,9 +17,9 @@
           padding: 20px 0;
           z-index: 1000;
           transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-          background: linear-gradient(135deg, rgba(138, 43, 226, 0.15) 0%, rgba(10, 10, 10, 0.95) 50%, rgba(0, 191, 255, 0.15) 100%);
+          background: linear-gradient(135deg, rgba(198, 255, 0, 0.15) 0%, rgba(10, 10, 10, 0.95) 50%, rgba(232, 255, 128, 0.15) 100%);
           backdrop-filter: blur(10px) saturate(180%);
-          border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+          border-bottom: 1px solid rgba(198, 255, 0, 0.2);
           transform: translateY(0);
         }
 
@@ -28,11 +28,11 @@
         }
 
         .navbar.scrolled {
-          background: linear-gradient(135deg, rgba(138, 43, 226, 0.2) 0%, rgba(10, 10, 10, 0.98) 50%, rgba(0, 191, 255, 0.2) 100%);
+          background: linear-gradient(135deg, rgba(198, 255, 0, 0.2) 0%, rgba(10, 10, 10, 0.98) 50%, rgba(232, 255, 128, 0.2) 100%);
           backdrop-filter: blur(20px) saturate(180%);
           padding: 12px 0;
-          box-shadow: 0 4px 30px rgba(138, 43, 226, 0.3);
-          border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+          box-shadow: 0 4px 30px rgba(198, 255, 0, 0.3);
+          border-bottom: 1px solid rgba(198, 255, 0, 0.3);
         }
 
         .nav-container {
@@ -58,7 +58,7 @@
         }
 
         .logo-text {
-          background: linear-gradient(135deg, #8a2be2, #00bfff, #8a2be2);
+          background: linear-gradient(135deg, #C6FF00, #E8FF80, #C6FF00);
           background-size: 200% auto;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -67,7 +67,7 @@
         }
 
         .logo-dot {
-          color: #00bfff;
+          color: #E8FF80;
           animation: pulse 2s ease-in-out infinite;
         }
 
@@ -83,7 +83,7 @@
 
         .logo:hover {
           transform: translateY(-2px);
-          filter: drop-shadow(0 4px 8px rgba(138, 43, 226, 0.4));
+          filter: drop-shadow(0 4px 8px rgba(198, 255, 0, 0.4));
         }
 
         .nav-menu {
@@ -101,7 +101,7 @@
         }
 
         .nav-link {
-          color: rgba(255, 255, 255, 0.75);
+          color: rgba(242, 242, 242, 0.75);
           text-decoration: none;
           font-size: 15px;
           font-weight: 600;
@@ -120,7 +120,7 @@
           transform: translateX(-50%) scaleX(0);
           width: 100%;
           height: 2px;
-          background: linear-gradient(90deg, #8a2be2, #00bfff);
+          background: linear-gradient(90deg, #C6FF00, #E8FF80);
           transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           border-radius: 2px;
         }
@@ -133,7 +133,7 @@
           transform: translateX(-50%);
           width: 4px;
           height: 4px;
-          background: #00bfff;
+          background: #E8FF80;
           border-radius: 50%;
           opacity: 0;
           transition: opacity 0.3s ease;
@@ -141,7 +141,7 @@
 
         .nav-link:hover,
         .nav-link.active {
-          color: #fff;
+          color: #F2F2F2;
           transform: translateY(-2px);
         }
 
@@ -176,7 +176,7 @@
           display: block;
           width: 28px;
           height: 2px;
-          background: #fff;
+          background: #F2F2F2;
           position: relative;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           border-radius: 2px;
@@ -188,7 +188,7 @@
           position: absolute;
           width: 28px;
           height: 2px;
-          background: #fff;
+          background: #F2F2F2;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           border-radius: 2px;
         }
@@ -208,13 +208,13 @@
         .hamburger.active::before {
           top: 0;
           transform: rotate(45deg);
-          background: linear-gradient(135deg, #8a2be2, #00bfff);
+          background: linear-gradient(135deg, #C6FF00, #E8FF80);
         }
 
         .hamburger.active::after {
           bottom: 0;
           transform: rotate(-45deg);
-          background: linear-gradient(135deg, #8a2be2, #00bfff);
+          background: linear-gradient(135deg, #C6FF00, #E8FF80);
         }
 
         .mobile-overlay {
@@ -242,14 +242,14 @@
             width: min(300px, 75vw);
             flex-direction: column;
             gap: 0;
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.25) 0%, rgba(10, 10, 10, 0.98) 50%, rgba(0, 191, 255, 0.25) 100%);
+            background: linear-gradient(135deg, rgba(198, 255, 0, 0.25) 0%, rgba(10, 10, 10, 0.98) 50%, rgba(232, 255, 128, 0.25) 100%);
             backdrop-filter: blur(20px);
             padding: 100px 40px 40px;
             transform: translateX(100%);
             opacity: 0;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
-            border-left: 1px solid rgba(138, 43, 226, 0.3);
+            box-shadow: -10px 0 40px rgba(10, 10, 10, 0.6);
+            border-left: 1px solid rgba(198, 255, 0, 0.3);
             align-items: flex-start;
           }
 
@@ -311,7 +311,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(10, 10, 10, 0.7);
             z-index: 999;
             animation: fadeIn 0.3s ease;
           }
@@ -361,7 +361,7 @@
         .nav-link:focus-visible,
         .mobile-menu-toggle:focus-visible,
         .logo:focus-visible {
-          outline: 2px solid #00bfff;
+          outline: 2px solid #E8FF80;
           outline-offset: 4px;
           border-radius: 2px;
         }
