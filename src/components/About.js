@@ -3,35 +3,6 @@ import { motion } from 'framer-motion';
 import PaperCard from './PaperCard';
 import './About.css';
 
-const tabs = [
-  { id: 'journey', label: 'Journey' },
-  { id: 'education', label: 'Education' },
-  { id: 'experience', label: 'Experience' },
-];
-
-const journeyItems = [
-  {
-    year: 'Feb 2026 — present',
-    title: 'Director of Membership Development and Volunteer Coordination',
-    description: 'Lead membership engagement and volunteer coordination initiatives for IEEE WIE Student Branch Affinity Group of University of Moratuwa. Coordinate volunteer assignments, event logistics, partnership outreach, and internal communication while supporting member onboarding and participation across branch activities.',
-  },
-  {
-    year: 'Mar 2026 — present',
-    title: 'Lead of Logistic Committee',
-    description: 'Lead logistics planning and coordination for IEEE Industry Applications Society student branch events and technical activities. Coordinate venues, schedules, equipment, volunteer assignments, and operational workflows to support smooth execution.',
-  },
-  {
-    year: 'Mar 2026 — present',
-    title: 'Member of Robotics and Automation Society',
-    description: 'Participate in robotics, automation, and engineering-focused student activities. Support technical events, workshops, and collaborative initiatives while expanding knowledge in robotics, embedded systems, and engineering problem-solving.',
-  },
-  {
-    year: 'Aug 2026 — present',
-    title: 'Member, IEEE Microwave Theory & Technology Society',
-    description: 'Engage in MTT-S activities, workshops, seminars, and professional development events. Collaborate with students and professionals to enhance knowledge in RF engineering, microwave systems, and wireless communication technologies.',
-  },
-];
-
 const educationItems = [
   {
     badge: 'Current',
@@ -48,12 +19,6 @@ const educationItems = [
     subtitle: 'G.C.E. Advanced Level — Physical Science stream',
     details: 'Completed studies with A, A, B results and a strong foundation in analytical problem solving.',
   },
-];
-
-const experienceItems = [
-  { image: process.env.PUBLIC_URL + '/lseg.jpg', title: 'LSEG', subtitle: 'Technology & innovation visit', description: 'Explored how modern financial platforms combine product thinking, reliability, and data-driven systems.' },
-  { image: process.env.PUBLIC_URL + '/24.jpg', title: 'Zone 24x7', subtitle: 'AI/ML solutions', description: 'Observed how intelligent systems are shaped for real-world enterprise needs and customer experience.' },
-  { image: process.env.PUBLIC_URL + '/wso2s.jpg', title: 'WSO2', subtitle: 'Open-source enterprise tools', description: 'Learned about scalable integrations, APIs, and the role of open-source software in modern engineering.' },
 ];
 
 const About = () => {
