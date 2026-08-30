@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { BrainCircuit, Database, LayoutTemplate, Server, Wrench } from 'lucide-react';
 import PaperCard from './PaperCard';
 
 const CAPABILITIES = [
@@ -6,6 +7,7 @@ const CAPABILITIES = [
     id: 'frontend',
     number: '01',
     title: 'Frontend Engineering',
+    icon: LayoutTemplate,
     summary: 'Building responsive, accessible and maintainable interfaces that translate complex requirements into clear user experiences.',
     technologies: ['React', 'Next.js', 'React Native', 'Expo', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Responsive Design'],
     capabilities: ['Component architecture', 'State management', 'Responsive layouts', 'Cross-platform interfaces', 'Accessibility', 'API integration'],
@@ -14,6 +16,7 @@ const CAPABILITIES = [
     id: 'backend',
     number: '02',
     title: 'Backend Engineering',
+    icon: Server,
     summary: 'Designing reliable application services, REST APIs and modular backend systems that support real product workflows.',
     technologies: ['Node.js', 'Express', 'NestJS', 'REST APIs', 'Firebase Authentication', 'Role-Based Access Control'],
     capabilities: ['RESTful API design', 'Authentication and authorization', 'Modular service architecture', 'Validation and error handling', 'Third-party integrations', 'Scheduled processing'],
@@ -22,6 +25,7 @@ const CAPABILITIES = [
     id: 'data',
     number: '03',
     title: 'Data and Cloud Systems',
+    icon: Database,
     summary: 'Structuring application data and cloud-connected services for secure, reliable and scalable digital products.',
     technologies: ['MongoDB', 'Mongoose', 'Firebase', 'Firestore', 'Supabase', 'PostgreSQL', 'Cloudinary', 'Vercel', 'Railway'],
     capabilities: ['Database modelling', 'Real-time data synchronization', 'Authentication workflows', 'File and image storage', 'Cloud deployment', 'Environment configuration'],
@@ -30,6 +34,7 @@ const CAPABILITIES = [
     id: 'ai',
     number: '04',
     title: 'AI-Integrated Applications',
+    icon: BrainCircuit,
     summary: 'Integrating AI and intelligent search capabilities into practical application workflows while keeping outputs controlled and user-focused.',
     technologies: ['Groq API', 'OpenAI-compatible APIs', 'Pinecone', 'Semantic Search', 'Meilisearch', 'Semantic Scholar API'],
     capabilities: ['AI-generated insights', 'Recommendation systems', 'Semantic product search', 'Research-paper analysis', 'Demand forecasting', 'Prompt and output validation'],
@@ -38,6 +43,7 @@ const CAPABILITIES = [
     id: 'tools',
     number: '05',
     title: 'Engineering Tools and Practices',
+    icon: Wrench,
     summary: 'Using modern development workflows and engineering practices to build, test, deploy and improve software collaboratively.',
     technologies: ['Git', 'GitHub', 'Postman', 'VS Code', 'Vite', 'npm', 'Firebase Console', 'Railway', 'Vercel', 'Arduino', 'ESP32', 'C/C++'],
     capabilities: ['Version control', 'Branching and merging', 'API testing', 'Debugging', 'Deployment configuration', 'Embedded system development'],
@@ -85,10 +91,10 @@ const Skills = () => {
   return (
     <section id="skills" className="skills-section" aria-labelledby="skills-heading">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
+        <div className="mb-7">
           <span className="skills-number-label">02 / EXPERTISE</span>
-          <h2 id="skills-heading" className="skills-heading">Technical capability across the complete product lifecycle.</h2>
-          <p className="skills-intro">From responsive interfaces and scalable backend services to cloud-connected systems and AI-assisted experiences, I work across the technologies required to transform ideas into reliable digital products.</p>
+          <h2 id="skills-heading" className="skills-heading">Technical capability across the full product lifecycle.</h2>
+          <p className="skills-intro">From interface design and backend systems to cloud services and AI experiences, I build the technologies needed to turn ideas into dependable products.</p>
         </div>
 
         <PaperCard className="skills-card">
@@ -104,6 +110,9 @@ const Skills = () => {
                 className={`skills-nav-item ${active === i ? 'is-active' : ''}`}
                 onClick={() => setActive(i)}
               >
+                <div className="skills-nav-icon-wrap">
+                  <cap.icon className="skills-nav-icon" size={16} strokeWidth={2} />
+                </div>
                 <div className="skills-nav-number">{cap.number}</div>
                 <div className="skills-nav-title">
                   <div className="skills-nav-name">{cap.title}</div>
@@ -124,7 +133,12 @@ const Skills = () => {
                   hidden={active !== i}
                   className="skills-panel"
                 >
-                  <h3 className="skills-panel-title">{cap.title}</h3>
+                  <div className="skills-panel-header">
+                    <span className="skills-panel-icon-wrap">
+                      <cap.icon className="skills-panel-icon" size={18} strokeWidth={2.2} />
+                    </span>
+                    <h3 className="skills-panel-title">{cap.title}</h3>
+                  </div>
                   <p className="skills-panel-summary">{cap.summary}</p>
 
                   <div className="skills-section-grid">

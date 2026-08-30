@@ -35,11 +35,11 @@ const IDEHero = () => {
           <motion.div initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
             <p className="text-sm font-semibold tracking-widest text-[var(--text-secondary)]">HELLO, I’M</p>
 
-            <h1 className="mt-4 text-4xl font-extrabold leading-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl">Shalini Bangamuwage</h1>
+            <h1 className="mt-4 text-4xl font-extrabold leading-[0.96] tracking-[-0.05em] text-[var(--text-primary)] sm:text-5xl lg:text-[3.2rem]">Shalini Bangamuwage</h1>
 
-            <h2 className="mt-3 text-xl font-semibold leading-snug bg-clip-text text-transparent hero-gradient-text">Innovative Software Engineer</h2>
+            <h2 className="mt-3 text-lg font-semibold leading-snug tracking-[0.02em] bg-clip-text text-transparent hero-gradient-text sm:text-xl">Innovative Software Engineer</h2>
 
-            <p className="mt-6 max-w-2xl text-base leading-7 text-[var(--text-secondary)]">I build intelligent, scalable and user-focused digital experiences by combining modern software engineering, creative problem-solving and emerging AI technologies.</p>
+            <p className="mt-6 max-w-xl text-base leading-7 text-[var(--text-secondary)] sm:text-[1.05rem]">I build intelligent, scalable and user-focused digital experiences by combining modern software engineering, creative problem-solving and emerging AI technologies.</p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <button onClick={() => scrollTo('#expertise')} className="btn-primary inline-flex items-center gap-3 rounded-md px-5 py-3 text-sm font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2" style={{ background: 'var(--button-primary)', color: 'var(--button-primary-text)' }}>

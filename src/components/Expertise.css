@@ -19,9 +19,9 @@
 }
 
 .expertise-project-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 1rem; border: 1px solid var(--border-color); background: var(--bg-primary); max-height: 420px; }
-.expertise-media-img { width:100%; height:100%; display:block; object-fit:cover; object-position:center; filter: grayscale(100%); transition: filter 500ms ease, transform 700ms cubic-bezier(.2,.8,.2,1); }
+.expertise-media-img { width:100%; height:100%; display:block; object-fit:cover; object-position:center; transition: transform 500ms cubic-bezier(.2,.8,.2,1), filter 500ms ease; }
 .expertise-project:focus-within .expertise-media-img,
-.expertise-project:hover .expertise-media-img { filter: grayscale(0%); transform: scale(1.025); }
+.expertise-project:hover .expertise-media-img { transform: scale(1.025); filter: saturate(1.08) contrast(1.04); }
 
 .expertise-media-fallback { display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:var(--bg-primary); border-radius:1rem; }
 .expertise-media-fallback-inner { color:var(--text-primary); font-weight:700; font-size:1.25rem; }

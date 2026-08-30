@@ -12,8 +12,8 @@
 .about-intro { max-width: 64rem; }
 .about-meta { color: var(--about-muted); font-weight: 600; letter-spacing: .18em; }
 .about-meta-title { color: var(--about-text); }
-.about-heading { font-size: 2.25rem; line-height:1.05; margin-top: .5rem; color: var(--about-text); }
-.about-lead { margin-top: .75rem; color: var(--about-muted); max-width: 56rem; }
+.about-heading { font-size: clamp(2rem, 3vw, 2.7rem); line-height:1.08; margin-top: .5rem; color: var(--about-text); }
+.about-lead { margin-top: .75rem; color: var(--about-muted); max-width: 52rem; line-height: 1.7; }
 
 /* Portrait */
 .about-portrait-card { max-width: 420px; }
