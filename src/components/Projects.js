@@ -17,7 +17,7 @@ const projects = [
     description: 'A multi-user pharmacy platform connecting customers, pharmacists and suppliers.',
     image: `${projectImagesPath}/medicarex.png`,
     github: 'https://github.com/SoftwareProjectInnovateX/Softwareproject23fontendMediCareXgroup8',
-    liveDemo: null,
+    liveDemo: 'https://innovatexuom.vercel.app/',
     technologies: ['React', 'NestJS', 'Firebase'],
     highlights: ['Team project', 'Inventory & dispensing workflows']
   },
@@ -43,7 +43,7 @@ const projects = [
     description: 'Cross-platform habit tracker with AI analysis.',
     image: `${projectImagesPath}/habit-autopsy.png`,
     github: 'https://github.com/ShaliniBangamuwage/habit_tracker',
-    liveDemo: null,
+    liveDemo: 'https://habittracker-shalini-madhukas-projects.vercel.app/',
     technologies: ['React Native', 'Expo'],
     highlights: ['Cross-platform', 'Offline-first sync']
   },

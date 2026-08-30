@@ -4,6 +4,7 @@ import IDEHero from './components/IDEHero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import Blog from './components/Blog';
 import Experience from './components/Experience';
 import Certification from './components/Certification';
 import Contact from './components/Contact';
@@ -33,6 +34,7 @@ function App() {
         <About />
         <Skills />
         <Projects />
+        <Blog />
         <Experience />
         <Certification />
         <Contact />
