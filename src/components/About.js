@@ -70,7 +70,7 @@ const About = () => {
           <PaperCard className="about-portrait-card p-6">
             <motion.div initial={{ opacity: 0, scale: 0.98 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="about-portrait-wrap">
               <div className="about-portrait-frame">
-                <img src={process.env.PUBLIC_URL + '/prop.jpg'} alt="Shalini Madhuka, innovative software engineer" className="about-portrait-photo" />
+                <img src={process.env.PUBLIC_URL + '/prop.jpg'} alt="Shalini Bangamuwage, innovative software engineer" className="about-portrait-photo" />
               </div>
               <div className="about-portrait-overlay" aria-hidden="true" />
             </motion.div>
@@ -78,7 +78,7 @@ const About = () => {
 
           <PaperCard className="about-story p-8">
             <p className="issue-number">About</p>
-            <h2 className="about-story-title">I’m Shalini Madhuka, an Information Technology undergraduate at the University of Moratuwa with a strong interest in full-stack software engineering and intelligent digital systems.</h2>
+            <h2 className="about-story-title">I'm Shalini Bangamuwage, an Information Technology undergraduate at the University of Moratuwa with a strong interest in full-stack software engineering and intelligent digital systems.</h2>
             <div className="about-paragraphs">
               <p>I enjoy transforming complex requirements into practical, reliable and intuitive applications. My approach combines structured engineering, thoughtful user experience and continuous experimentation with emerging AI and cloud technologies.</p>
               <p>Beyond writing code, I focus on understanding the real problem, designing maintainable solutions and creating digital experiences that provide meaningful value to their users.</p>

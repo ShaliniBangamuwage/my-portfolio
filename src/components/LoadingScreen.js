@@ -9,7 +9,7 @@ const LoadingScreen = () => (
         <div className="absolute inset-0 flex items-center justify-center text-sm font-semibold tracking-[0.35em]">SM</div>
       </div>
       <div className="text-center">
-        <p className="text-xl font-semibold tracking-[0.3em]">SHALINI MADHUKA</p>
+        <p className="text-xl font-semibold tracking-[0.3em]">SHALINI BANGAMUWAGE</p>
         <p className="mt-2 text-sm uppercase tracking-[0.35em] text-[var(--text-muted)]">Loading Portfolio</p>
       </div>
     </motion.div>

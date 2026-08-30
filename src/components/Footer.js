@@ -59,7 +59,7 @@ const Footer = () => {
           {/* Bottom */}
           <div className="footer-bottom">
             <div>
-              <p className="text-[var(--text-muted)]">© {currentYear} <span className="font-semibold text-[var(--text-primary)]">Shalini Madhuka</span>. All rights reserved.</p>
+              <p className="text-[var(--text-muted)]">© {currentYear} <span className="font-semibold text-[var(--text-primary)]">Shalini Bangamuwage</span>. All rights reserved.</p>
               <p className="mt-1 text-[var(--text-secondary)]">Available for full-time, contract and collaborative roles.</p>
             </div>
 

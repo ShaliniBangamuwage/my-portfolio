@@ -59,7 +59,7 @@ const Hero = () => {
 
               <div className="rounded-sm border border-[var(--border)] bg-[var(--surface-elevated)] p-6 text-[var(--text-primary)]">
                 <p className="font-bold uppercase tracking-[0.35em] text-[var(--text-primary)]">Name</p>
-                <p className="mt-2 text-3xl font-semibold">Shalini Madhuka</p>
+                <p className="mt-2 text-3xl font-semibold">Shalini Bangamuwage</p>
                 <p className="mt-4 uppercase tracking-[0.35em] text-[var(--text-secondary)] text-sm">Full Stack Developer</p>
               </div>
 

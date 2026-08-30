@@ -49,16 +49,16 @@ const projects = [
   },
   {
     id: 4,
-    slug: 'edulanka',
-    title: 'EduLanka',
-    subtitle: 'Education platform',
+    slug: 'maths-lankaa',
+    title: 'Maths ලංකා',
+    subtitle: 'Government school platform',
     category: 'Education Platform',
-    description: 'A lightweight LMS and course marketplace for Sri Lanka.',
-    image: `${projectImagesPath}/edulanka.png`,
-    github: 'https://github.com/example/edulanka',
-    liveDemo: null,
+    description: 'A comprehensive mathematics education platform for schools in Sri Lanka.',
+    image: `${projectImagesPath}/mathslanka.png`,
+    github: 'https://github.com/example/maths-lankaa',
+    liveDemo: 'https://edunexa-school-platform.vercel.app/',
     technologies: ['React', 'Node.js'],
-    highlights: ['Course marketplace', 'Teacher dashboards']
+    highlights: ['School platform', 'Mathematics focus']
   },
   {
     id: 5,

@@ -66,7 +66,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-[var(--border-color)] pt-8 text-center text-sm text-[var(--text-muted)]">
           <p className="flex items-center justify-center gap-2">
-            Made with <Heart size={16} className="text-[var(--accent)]" /> by Shalini Madhuka © {currentYear}
+            Made with <Heart size={16} className="text-[var(--accent)]" /> by Shalini Bangamuwage © {currentYear}
           </p>
           <p className="mt-2 font-mono text-xs">All rights reserved</p>
         </div>

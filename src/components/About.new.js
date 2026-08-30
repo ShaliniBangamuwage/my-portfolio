@@ -162,7 +162,7 @@ const About = () => {
         <motion.div initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, ease: 'easeOut' }} className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div className="rounded-[2rem] border border-white/10 bg-slate-950/90 p-6 shadow-2xl shadow-black/30">
             <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-900/95">
-              <img src={process.env.PUBLIC_URL + '/prop.jpg'} alt="Shalini Madhuka" className="h-full w-full object-cover" />
+              <img src={process.env.PUBLIC_URL + '/prop.jpg'} alt="Shalini Bangamuwage" className="h-full w-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
             </div>
             <div className="mt-6 grid gap-4 rounded-[1.5rem] border border-white/10 bg-slate-950/80 p-5">
@@ -192,7 +192,7 @@ const About = () => {
             <div className="space-y-5 rounded-[2rem] border border-white/10 bg-slate-950/90 p-8 shadow-2xl shadow-black/30">
               <span className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-accent">Software Developer & IEEE Member</span>
               <div className="space-y-5">
-                <h2 className="text-3xl font-semibold tracking-[-0.03em] text-slate-50 sm:text-4xl">Hi, I’m <span className="text-accent">Shalini Madhuka</span></h2>
+                <h2 className="text-3xl font-semibold tracking-[-0.03em] text-slate-50 sm:text-4xl">Hi, I'm <span className="text-accent">Shalini Bangamuwage</span></h2>
                 <div className="space-y-4 text-slate-300">
                   <p>A passionate software developer and active IEEE member pursuing BSc (Hons) in Information Technology at the University of Moratuwa.</p>
                   <p>I specialize in React Native, Java, and modern web technologies, building thoughtful products that blend technical quality with polished user experience.</p>

@@ -35,7 +35,7 @@ const IDEHero = () => {
           <motion.div initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
             <p className="text-sm font-semibold tracking-widest text-[var(--text-secondary)]">HELLO, I’M</p>
 
-            <h1 className="mt-4 text-4xl font-extrabold leading-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl">Shalini Madhuka</h1>
+            <h1 className="mt-4 text-4xl font-extrabold leading-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl">Shalini Bangamuwage</h1>
 
             <h2 className="mt-3 text-xl font-semibold leading-snug bg-clip-text text-transparent hero-gradient-text">Innovative Software Engineer</h2>
 
@@ -72,7 +72,7 @@ const IDEHero = () => {
               <div className="ide-portrait-frame">
                 <img
                   src={photo}
-                  alt="Shalini Madhuka, innovative software engineer"
+                  alt="Shalini Bangamuwage, innovative software engineer"
                   className="ide-portrait-photo"
                 />
               </div>
