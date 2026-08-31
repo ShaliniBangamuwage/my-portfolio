@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDownRight } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { SiReact } from 'react-icons/si';
+import { SiReact, SiNodedotjs, SiFirebase, SiTailwindcss, SiTypescript, SiMongodb } from 'react-icons/si';
 import './IDEHero.css';
 
 const IDEHero = () => {
@@ -12,48 +12,57 @@ const IDEHero = () => {
 
   const resumeUrl = process.env.PUBLIC_URL + '/resume.pdf';
   const photo = process.env.PUBLIC_URL + '/prop.jpg';
+  const orbitTech = [
+    { icon: <SiReact />, label: 'React' },
+    { icon: <SiNodedotjs />, label: 'Node' },
+    { icon: <SiFirebase />, label: 'Firebase' },
+    { icon: <SiTailwindcss />, label: 'Tailwind' },
+    { icon: <SiTypescript />, label: 'TypeScript' },
+    { icon: <SiMongodb />, label: 'MongoDB' },
+  ];
 
   return (
-    <section id="home" className="relative isolate overflow-hidden bg-hero-gradient min-h-screen flex items-center">
-      {/* background details: grid, soft lights, particles */}
+    <section id="home" className="relative isolate overflow-hidden min-h-screen flex items-center">
       <div className="absolute inset-0 -z-10 opacity-40">
         <div className="pointer-events-none h-full w-full subtle-pattern" />
-        <div className="pointer-events-none absolute inset-0 opacity-05">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <defs>
-              <pattern id="gridDots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-                <circle cx="1" cy="1" r="0.7" fill="var(--border-color)" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#gridDots)" />
-          </svg>
-        </div>
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-center hero-grid">
+      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center hero-grid">
           <motion.div initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-            <p className="text-sm font-semibold tracking-widest text-[var(--text-secondary)]">HELLO, I’M</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.36em] text-[var(--text-muted)]">Hello, I am</p>
 
-            <h1 className="mt-4 text-4xl font-extrabold leading-[0.96] tracking-[-0.05em] text-[var(--text-primary)] sm:text-5xl lg:text-[3.2rem]">Shalini Bangamuwage</h1>
+            <h1 className="mt-4 text-4xl font-black leading-[0.9] tracking-[-0.06em] text-[var(--text-primary)] sm:text-5xl lg:text-[5rem]">
+              Shalini<br />Bangamuwage
+            </h1>
 
-            <h2 className="mt-3 text-lg font-semibold leading-snug tracking-[0.02em] bg-clip-text text-transparent hero-gradient-text sm:text-xl">Innovative Software Engineer</h2>
+            <div className="mt-5 flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-[var(--text-secondary)]">
+              <span className="rounded-full border border-[var(--border)] px-2.5 py-1.5">Full-Stack</span>
+              <span className="rounded-full border border-[var(--border)] px-2.5 py-1.5">AI Products</span>
+              <span className="rounded-full border border-[var(--border)] px-2.5 py-1.5">Cloud Systems</span>
+            </div>
 
-            <p className="mt-6 max-w-xl text-base leading-7 text-[var(--text-secondary)] sm:text-[1.05rem]">I build intelligent, scalable and user-focused digital experiences by combining modern software engineering, creative problem-solving and emerging AI technologies.</p>
+            <h2 className="mt-6 text-xl font-medium tracking-[-0.04em] text-[var(--text-secondary)] sm:text-2xl">
+              Software engineer building modern, scalable, and user-focused digital experiences.
+            </h2>
+
+            <p className="mt-6 max-w-xl text-sm leading-7 text-[var(--text-secondary)] sm:text-[0.95rem]">
+              I design and build products that combine clean engineering, thoughtful product thinking, and AI-driven experiences for real users.
+            </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <button onClick={() => scrollTo('#expertise')} className="btn-primary inline-flex items-center gap-3 rounded-md px-5 py-3 text-sm font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2" style={{ background: 'var(--button-primary)', color: 'var(--button-primary-text)' }}>
-                View My Work
+              <button onClick={() => scrollTo('#expertise')} className="inline-flex items-center gap-3 rounded-none border border-[var(--border)] bg-[var(--text-primary)] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--text-inverse)] transition hover:translate-y-[-1px] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2">
+                View Work
                 <ArrowDownRight size={16} />
               </button>
 
-              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="btn-ghost inline-flex items-center gap-3 rounded-md border border-[var(--border-color)] px-5 py-3 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2" style={{ color: 'var(--text-primary)' }}>
+              <a href={resumeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-none border border-[var(--border)] bg-transparent px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--text-primary)] transition hover:bg-[var(--surface)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2">
                 Download CV
               </a>
 
               <div className="ml-2 flex items-center gap-2">
-                <a href="https://github.com/ShaliniBangamuwage" aria-label="GitHub" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-full p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"><FaGithub className="h-5 w-5" /></a>
-                <a href="https://www.linkedin.com/in/shalini-bangamuwage/" aria-label="LinkedIn" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-full p-2 text-[var(--text-secondary)] hover:text-[var(--accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"><FaLinkedin className="h-5 w-5" /></a>
+                <a href="https://github.com/ShaliniBangamuwage" aria-label="GitHub" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-full border border-[var(--border)] p-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface)]"><FaGithub className="h-4 w-4" /></a>
+                <a href="https://www.linkedin.com/in/shalini-bangamuwage/" aria-label="LinkedIn" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center rounded-full border border-[var(--border)] p-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface)]"><FaLinkedin className="h-4 w-4" /></a>
               </div>
             </div>
           </motion.div>
@@ -69,28 +78,25 @@ const IDEHero = () => {
               <div className="ide-orbit ide-orbit-one" aria-hidden="true" />
               <div className="ide-orbit ide-orbit-two" aria-hidden="true" />
 
+              <div className="ide-orbit-icons" aria-hidden="true">
+                {orbitTech.map((item, index) => (
+                  <span
+                    key={item.label}
+                    className="ide-orbit-icon"
+                    style={{ '--angle': `${index * (360 / orbitTech.length)}deg` }}
+                    title={item.label}
+                  >
+                    {item.icon}
+                  </span>
+                ))}
+              </div>
+
               <div className="ide-portrait-frame">
                 <img
                   src={photo}
                   alt="Shalini Bangamuwage, innovative software engineer"
                   className="ide-portrait-photo"
                 />
-              </div>
-
-              <div className="ide-code-badge ide-badge-code" aria-hidden="true">
-                &lt;/&gt;
-              </div>
-
-              <div className="ide-code-badge ide-badge-react" aria-hidden="true">
-                <SiReact />
-              </div>
-
-              <div className="ide-code-badge ide-badge-braces" aria-hidden="true">
-                {'{ }'}
-              </div>
-
-              <div className="ide-code-badge ide-badge-terminal" aria-hidden="true">
-                &gt;_
               </div>
             </div>
 
@@ -99,11 +105,11 @@ const IDEHero = () => {
               <i>•</i>
               <span>NESTJS</span>
               <i>•</i>
-              <span>TYPESCRIPT</span>
+              <span>NODE</span>
+              <i>•</i>
+              <span>AI</span>
               <i>•</i>
               <span>FIREBASE</span>
-              <i>•</i>
-              <span>AWS</span>
             </div>
           </motion.div>
         </div>

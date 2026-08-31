@@ -133,8 +133,12 @@ const About = () => {
             <div className="about-education-panel">
               {educationItems.map((ed) => (
                 <div key={ed.title} className="about-education-item">
-                  <div className="about-education-title">
-                    <strong>{ed.title}</strong>
+                  <div className="about-education-meta">
+                    <span className="about-education-badge">{ed.badge}</span>
+                    <span className="about-education-period">{ed.period}</span>
+                  </div>
+                  <div className="about-education-title-wrap">
+                    <h4 className="about-education-title">{ed.title}</h4>
                     <span className="about-education-sub">{ed.subtitle}</span>
                   </div>
                   <p className="about-education-desc">{ed.details}</p>
@@ -173,15 +177,15 @@ const About = () => {
         <section className="about-metrics-cta mt-12">
           <div className="about-metrics">
             <div className="about-metric">
-              <div className="about-metric-num" aria-hidden="true">—</div>
+              <div className="about-metric-num">12+</div>
               <div className="about-metric-label">PROJECTS</div>
             </div>
             <div className="about-metric">
-              <div className="about-metric-num" aria-hidden="true">—</div>
+              <div className="about-metric-num">20+</div>
               <div className="about-metric-label">TECHNOLOGIES</div>
             </div>
             <div className="about-metric">
-              <div className="about-metric-num" aria-hidden="true">—</div>
+              <div className="about-metric-num">08</div>
               <div className="about-metric-label">CERTIFICATIONS</div>
             </div>
             <div className="about-metric">

@@ -2,11 +2,11 @@
 
 .expertise-projects { max-width: 1440px; margin: 0 auto; }
 
-.expertise-filter { border: 1px solid var(--border-color); background: var(--surface); color: var(--text-secondary); }
-.expertise-filter-active { border-color: var(--border-color); background: var(--card-bg); color: var(--text-primary); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+.expertise-filter { border: 1px solid var(--border-color); background: var(--surface); color: var(--text-secondary); transition: all 180ms ease; }
+.expertise-filter-active { border-color: var(--border-color); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); color: var(--text-primary); box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
 .expertise-filter-inactive:hover { background: var(--hover); }
 
-.expertise-project { display: grid; grid-template-columns: 1fr; gap:1rem; align-items:center; }
+.expertise-project { display: grid; grid-template-columns: 1fr; gap:1rem; align-items:center; background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.0)); border:1px solid var(--border-color); border-radius: 1.1rem; padding: 1.25rem; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
 .expertise-project--featured { grid-template-columns: 1fr; }
 .expertise-project--featured .expertise-project-media { order: 0; }
 .expertise-project--featured.reverse .expertise-project-media { order: 1; }
@@ -18,7 +18,7 @@
   .expertise-project--featured.reverse .expertise-project-content { order: 0; }
 }
 
-.expertise-project-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 1rem; border: 1px solid var(--border-color); background: var(--bg-primary); max-height: 420px; }
+.expertise-project-media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 1rem; border: 1px solid var(--border-color); background: var(--bg-primary); max-height: 420px; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02); }
 .expertise-media-img { width:100%; height:100%; display:block; object-fit:cover; object-position:center; transition: transform 500ms cubic-bezier(.2,.8,.2,1), filter 500ms ease; }
 .expertise-project:focus-within .expertise-media-img,
 .expertise-project:hover .expertise-media-img { transform: scale(1.025); filter: saturate(1.08) contrast(1.04); }

@@ -9,11 +9,11 @@
 
 .about-root { }
 
-.about-intro { max-width: 64rem; }
+.about-intro { max-width: 64rem; padding-top: 0.5rem; }
 .about-meta { color: var(--about-muted); font-weight: 600; letter-spacing: .18em; }
 .about-meta-title { color: var(--about-text); }
-.about-heading { font-size: clamp(2rem, 3vw, 2.7rem); line-height:1.08; margin-top: .5rem; color: var(--about-text); }
-.about-lead { margin-top: .75rem; color: var(--about-muted); max-width: 52rem; line-height: 1.7; }
+.about-heading { font-size: clamp(2rem, 3vw, 2.7rem); line-height:1.18; margin-top: .75rem; color: var(--about-text); letter-spacing: -0.04em; }
+.about-lead { margin-top: 1rem; color: var(--about-muted); max-width: 52rem; line-height: 1.9; letter-spacing: 0.01em; }
 
 /* Portrait */
 .about-portrait-card { max-width: 420px; }
@@ -21,11 +21,11 @@
 .about-portrait-photo { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
 .about-portrait-overlay { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(0deg, rgba(0,0,0,0.03), rgba(255,255,255,0.02)); mix-blend-mode: overlay; border-radius: .9rem; }
 
-.about-story .about-story-title { font-size: 1.25rem; color: var(--about-text); margin-top: .5rem; }
-.about-paragraphs p { color: var(--about-muted); margin-top: .75rem; }
-.about-quote { margin-top: 1rem; padding: 1rem; border-left: 3px solid var(--about-border); background: rgba(0,0,0,0.02); }
+.about-story .about-story-title { font-size: 1.25rem; color: var(--about-text); margin-top: .75rem; line-height: 1.7; }
+.about-paragraphs p { color: var(--about-muted); margin-top: .9rem; line-height: 1.9; }
+.about-quote { margin-top: 1.25rem; padding: 1rem 1.25rem; border-left: 3px solid var(--about-border); background: rgba(0,0,0,0.02); }
 .about-quote .quote-mark { font-size: 2rem; line-height: .6; color: var(--about-accent); }
-.about-quote .quote-text { margin-left: .5rem; color: var(--about-muted); }
+.about-quote .quote-text { margin-left: .5rem; color: var(--about-muted); line-height: 1.8; }
 
 /* Process */
 .about-process .section-header { margin-bottom: .5rem; }
@@ -47,10 +47,53 @@
 
 /* Education */
 .about-education-panel { background: var(--about-bg); border: 1px solid var(--about-border); padding: 1rem; border-radius: .75rem; }
-.about-education-item { margin-bottom: .75rem; }
-.about-education-title { display:flex; justify-content:space-between; gap:1rem; align-items:center; }
-.about-education-sub { color: var(--about-muted); font-size: .9rem; }
-.about-education-desc { color: var(--about-muted); margin-top:.5rem; }
+.about-education-item {
+  position: relative;
+  padding: 1rem 0 1rem 1rem;
+  margin-bottom: .75rem;
+  border-left: 1px solid var(--about-border);
+}
+.about-education-item:last-child { margin-bottom: 0; }
+.about-education-item::before {
+  content: "";
+  position: absolute;
+  left: -0.35rem;
+  top: 1.2rem;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: var(--about-accent);
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.04);
+}
+.about-education-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+.about-education-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--about-border);
+  color: var(--about-text);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.about-education-period {
+  color: var(--about-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+.about-education-title-wrap { display: flex; flex-direction: column; gap: 0.3rem; }
+.about-education-title { margin: 0; color: var(--about-text); font-size: 1.02rem; line-height: 1.45; }
+.about-education-sub { color: var(--about-muted); font-size: 0.9rem; line-height: 1.7; }
+.about-education-desc { color: var(--about-muted); margin-top: 0.5rem; line-height: 1.8; }
 .about-currently h4 { margin-top: .75rem; color: var(--about-text); }
 .about-currently ul { margin-top:.5rem; color: var(--about-muted); list-style: disc; padding-left:1rem; }
 

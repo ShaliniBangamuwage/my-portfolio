@@ -8,7 +8,6 @@ const CAPABILITIES = [
     number: '01',
     title: 'Frontend Engineering',
     icon: LayoutTemplate,
-    summary: 'Building responsive, accessible and maintainable interfaces that translate complex requirements into clear user experiences.',
     technologies: ['React', 'Next.js', 'React Native', 'Expo', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Responsive Design'],
     capabilities: ['Component architecture', 'State management', 'Responsive layouts', 'Cross-platform interfaces', 'Accessibility', 'API integration'],
   },
@@ -17,7 +16,6 @@ const CAPABILITIES = [
     number: '02',
     title: 'Backend Engineering',
     icon: Server,
-    summary: 'Designing reliable application services, REST APIs and modular backend systems that support real product workflows.',
     technologies: ['Node.js', 'Express', 'NestJS', 'REST APIs', 'Firebase Authentication', 'Role-Based Access Control'],
     capabilities: ['RESTful API design', 'Authentication and authorization', 'Modular service architecture', 'Validation and error handling', 'Third-party integrations', 'Scheduled processing'],
   },
@@ -26,7 +24,6 @@ const CAPABILITIES = [
     number: '03',
     title: 'Data and Cloud Systems',
     icon: Database,
-    summary: 'Structuring application data and cloud-connected services for secure, reliable and scalable digital products.',
     technologies: ['MongoDB', 'Mongoose', 'Firebase', 'Firestore', 'Supabase', 'PostgreSQL', 'Cloudinary', 'Vercel', 'Railway'],
     capabilities: ['Database modelling', 'Real-time data synchronization', 'Authentication workflows', 'File and image storage', 'Cloud deployment', 'Environment configuration'],
   },
@@ -35,7 +32,6 @@ const CAPABILITIES = [
     number: '04',
     title: 'AI-Integrated Applications',
     icon: BrainCircuit,
-    summary: 'Integrating AI and intelligent search capabilities into practical application workflows while keeping outputs controlled and user-focused.',
     technologies: ['Groq API', 'OpenAI-compatible APIs', 'Pinecone', 'Semantic Search', 'Meilisearch', 'Semantic Scholar API'],
     capabilities: ['AI-generated insights', 'Recommendation systems', 'Semantic product search', 'Research-paper analysis', 'Demand forecasting', 'Prompt and output validation'],
   },
@@ -44,7 +40,6 @@ const CAPABILITIES = [
     number: '05',
     title: 'Engineering Tools and Practices',
     icon: Wrench,
-    summary: 'Using modern development workflows and engineering practices to build, test, deploy and improve software collaboratively.',
     technologies: ['Git', 'GitHub', 'Postman', 'VS Code', 'Vite', 'npm', 'Firebase Console', 'Railway', 'Vercel', 'Arduino', 'ESP32', 'C/C++'],
     capabilities: ['Version control', 'Branching and merging', 'API testing', 'Debugging', 'Deployment configuration', 'Embedded system development'],
   },
@@ -58,14 +53,6 @@ const TECHNOLOGY_GROUPS = {
   'Cloud and Tools': ['Vercel', 'Railway', 'Cloudinary', 'Git', 'GitHub', 'Postman'],
   Embedded: ['Arduino Mega', 'ESP32', 'C', 'C++'],
 };
-
-const EVIDENCE = [
-  { project: 'MediCareX', text: 'Multi-role full-stack architecture with Firebase authentication, Firestore workflows, NestJS services and AI-integrated recommendations.' },
-  { project: 'PaperPulse', text: 'Next.js and Supabase platform with Groq-based paper analysis and Semantic Scholar integration for research workflows.' },
-  { project: 'HabitAutopsy', text: 'Cross-platform React Native app with Node.js/Express APIs, Supabase data and AI-assisted behavioural reports.' },
-  { project: 'Caferia', text: 'React storefront with Node.js/Express REST API and MongoDB/Mongoose data modelling for ordering workflows.' },
-  { project: 'Laser Tune', text: 'Embedded firmware and sensor integration using Arduino Mega, ESP32 and C++ for audio processing.' },
-];
 
 const Skills = () => {
   const [active, setActive] = useState(0);
@@ -97,7 +84,7 @@ const Skills = () => {
           <p className="skills-intro">From interface design and backend systems to cloud services and AI experiences, I build the technologies needed to turn ideas into dependable products.</p>
         </div>
 
-        <PaperCard className="skills-card">
+        <PaperCard className="skills-card skills-card-elevated">
           <nav ref={navRef} className="skills-nav" role="tablist" aria-orientation="horizontal" onKeyDown={onKeyDown}>
             {CAPABILITIES.map((cap, i) => (
               <button
@@ -116,7 +103,6 @@ const Skills = () => {
                 <div className="skills-nav-number">{cap.number}</div>
                 <div className="skills-nav-title">
                   <div className="skills-nav-name">{cap.title}</div>
-                  <div className="skills-nav-summary">{cap.summary}</div>
                 </div>
               </button>
             ))}
@@ -139,7 +125,6 @@ const Skills = () => {
                     </span>
                     <h3 className="skills-panel-title">{cap.title}</h3>
                   </div>
-                  <p className="skills-panel-summary">{cap.summary}</p>
 
                   <div className="skills-section-grid">
                     <div>
@@ -165,82 +150,18 @@ const Skills = () => {
             </div>
           </div>
 
-          {/* Technology ecosystem */}
-          <div className="skills-ecosystem">
-            <h4 className="skills-small-label">Technology Ecosystem</h4>
-            <div className="skills-ecosystem-grid">
-              {Object.entries(TECHNOLOGY_GROUPS).map(([group, items]) => (
-                <div key={group} className="skills-ecosystem-group">
-                  <div className="skills-ecosystem-group-title">{group}</div>
-                  <div className="skills-ecosystem-tags">
-                    {items.map((it) => (
-                      <span key={it} className="skills-tag">{it}</span>
-                    ))}
-                  </div>
-                </div>
-              ))}
+          <div className="skills-summary-grid">
+            <div className="skills-summary-item">
+              <div className="skills-summary-label">Core focus</div>
+              <p>Full-stack product development from interface to deployment.</p>
             </div>
-          </div>
-
-          {/* Capability in Practice */}
-          <div className="skills-evidence">
-            <h4 className="skills-small-label">Capability in Practice</h4>
-            <div className="skills-evidence-list">
-              {EVIDENCE.map((e) => (
-                <div key={e.project} className="skills-evidence-item">
-                  <strong className="skills-evidence-project">{e.project}:</strong>
-                  <span className="skills-evidence-text"> {e.text}</span>
-                </div>
-              ))}
+            <div className="skills-summary-item">
+              <div className="skills-summary-label">Strongest fit</div>
+              <p>Product architecture, AI workflows, and scalable digital systems.</p>
             </div>
-          </div>
-
-          {/* Strengths & Current direction */}
-          <div className="skills-strengths">
-            <div className="skills-strengths-grid">
-              <div className="skills-strengths-item">
-                <h4 className="skills-strength-number">01</h4>
-                <div>
-                  <h5 className="skills-strength-title">Full-Stack Product Development</h5>
-                  <p className="skills-strength-desc">Connecting frontend interfaces, backend services and application data into complete product experiences.</p>
-                </div>
-              </div>
-
-              <div className="skills-strengths-item">
-                <h4 className="skills-strength-number">02</h4>
-                <div>
-                  <h5 className="skills-strength-title">System Integration</h5>
-                  <p className="skills-strength-desc">Connecting authentication, payments, storage, search, AI services and external APIs.</p>
-                </div>
-              </div>
-
-              <div className="skills-strengths-item">
-                <h4 className="skills-strength-number">03</h4>
-                <div>
-                  <h5 className="skills-strength-title">Problem Solving</h5>
-                  <p className="skills-strength-desc">Diagnosing application, deployment, authorization, data-flow and integration issues.</p>
-                </div>
-              </div>
-
-              <div className="skills-strengths-item">
-                <h4 className="skills-strength-number">04</h4>
-                <div>
-                  <h5 className="skills-strength-title">User-Focused Engineering</h5>
-                  <p className="skills-strength-desc">Balancing technical implementation with responsive and intuitive experiences.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="skills-current">
-              <div className="skills-current-label">CURRENTLY EXPLORING</div>
-              <ul className="skills-current-list">
-                <li>Scalable software architecture</li>
-                <li>Cloud-native application development</li>
-                <li>Responsible AI integration</li>
-                <li>System design and performance</li>
-                <li>Automated testing and CI/CD</li>
-                <li>Secure application development</li>
-              </ul>
+            <div className="skills-summary-item">
+              <div className="skills-summary-label">Currently exploring</div>
+              <p>Cloud-native systems, secure AI integration, and reliable engineering practices.</p>
             </div>
           </div>
         </PaperCard>
