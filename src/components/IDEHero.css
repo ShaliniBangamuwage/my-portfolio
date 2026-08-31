@@ -73,10 +73,10 @@
 .ide-portrait-frame {
   position: relative;
   z-index: 3;
-  width: 2%;
+  width: 62%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 75%;
+  border-radius: 50%;
   border: 1px solid rgba(255,255,255,0.1);
   background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
   box-shadow: 0 22px 70px rgba(0,0,0,0.42);
