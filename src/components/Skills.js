@@ -45,15 +45,6 @@ const CAPABILITIES = [
   },
 ];
 
-const TECHNOLOGY_GROUPS = {
-  Frontend: ['React', 'Next.js', 'React Native', 'Expo', 'JavaScript', 'TypeScript', 'Tailwind CSS'],
-  Backend: ['Node.js', 'Express', 'NestJS', 'REST APIs'],
-  Data: ['MongoDB', 'Mongoose', 'Firebase', 'Firestore', 'Supabase', 'PostgreSQL'],
-  'AI and Search': ['Groq API', 'Pinecone', 'Meilisearch', 'Semantic Scholar API'],
-  'Cloud and Tools': ['Vercel', 'Railway', 'Cloudinary', 'Git', 'GitHub', 'Postman'],
-  Embedded: ['Arduino Mega', 'ESP32', 'C', 'C++'],
-};
-
 const Skills = () => {
   const [active, setActive] = useState(0);
   const navRef = useRef(null);
