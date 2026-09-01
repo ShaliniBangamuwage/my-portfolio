@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDownRight } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { SiReact, SiNodedotjs, SiFirebase, SiTailwindcss, SiTypescript, SiMongodb } from 'react-icons/si';
 import './IDEHero.css';
 
 const IDEHero = () => {
@@ -12,14 +11,6 @@ const IDEHero = () => {
 
   const resumeUrl = process.env.PUBLIC_URL + '/resume.pdf';
   const photo = process.env.PUBLIC_URL + '/prop.jpg';
-  const orbitTech = [
-    { icon: <SiReact />, label: 'React' },
-    { icon: <SiNodedotjs />, label: 'Node' },
-    { icon: <SiFirebase />, label: 'Firebase' },
-    { icon: <SiTailwindcss />, label: 'Tailwind' },
-    { icon: <SiTypescript />, label: 'TypeScript' },
-    { icon: <SiMongodb />, label: 'MongoDB' },
-  ];
 
   return (
     <section id="home" className="relative isolate overflow-hidden min-h-screen flex items-center">
@@ -77,19 +68,6 @@ const IDEHero = () => {
             <div className="ide-portrait-system">
               <div className="ide-orbit ide-orbit-one" aria-hidden="true" />
               <div className="ide-orbit ide-orbit-two" aria-hidden="true" />
-
-              <div className="ide-orbit-icons" aria-hidden="true">
-                {orbitTech.map((item, index) => (
-                  <span
-                    key={item.label}
-                    className="ide-orbit-icon"
-                    style={{ '--angle': `${index * (360 / orbitTech.length)}deg` }}
-                    title={item.label}
-                  >
-                    {item.icon}
-                  </span>
-                ))}
-              </div>
 
               <div className="ide-portrait-frame">
                 <img
