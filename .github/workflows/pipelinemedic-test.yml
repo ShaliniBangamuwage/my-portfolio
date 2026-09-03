@@ -1,0 +1,16 @@
+name: PipelineMedic Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-failure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Intentional test failure
+        run: |
+          echo "Testing PipelineMedic"
+          echo "This workflow should fail"
+          exit 1
