@@ -12,5 +12,5 @@ jobs:
     steps:
       - name: Intentional dependency failure
         run: |
-          echo "ModuleNotFoundError: No module named requests"
+          echo "module not found: requests"
           exit 1
