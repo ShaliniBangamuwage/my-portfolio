@@ -1,0 +1,17 @@
+name: PipelineMedic Patch Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  patch-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run broken Python file
+        run: python patch-test.py
