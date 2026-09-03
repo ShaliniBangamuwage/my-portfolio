@@ -8,9 +8,9 @@ on:
 jobs:
   test-failure:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Intentional test failure
+      - name: Intentional dependency failure
         run: |
-          echo "Testing PipelineMedic"
-          echo "This workflow should fail"
+          echo "ModuleNotFoundError: No module named requests"
           exit 1
