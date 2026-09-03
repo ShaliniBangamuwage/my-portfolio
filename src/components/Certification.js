@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { ExternalLink, Filter, Layers } from 'lucide-react';
+import { ExternalLink, Layers } from 'lucide-react';
 import PaperCard from './PaperCard';
 
 const certifications = [
@@ -121,10 +121,6 @@ const Certification = () => {
     <section className="bg-[var(--bg-primary)] text-[var(--text-primary)] px-4 py-20 sm:px-6 lg:px-8" id="certification">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 space-y-4 text-center">
-          <div className="inline-flex items-center gap-2 rounded-sm border border-[var(--border)] bg-[var(--surface-elevated)] px-4 py-2 text-xs uppercase tracking-[0.35em] text-[var(--text-secondary)]">
-            <Filter className="h-4 w-4" />
-            <span>CERTIFIED RECORDS</span>
-          </div>
           <h1 className="section-header">Certification Archive</h1>
           <p className="editor-note">Stamped technical records and credential cards presented with a dossier seal aesthetic.</p>
         </div>

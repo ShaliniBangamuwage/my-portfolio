@@ -13,21 +13,21 @@ const IDEHero = () => {
   const photo = process.env.PUBLIC_URL + '/prop.jpg';
 
   return (
-    <section id="home" className="relative isolate overflow-hidden min-h-screen flex items-center">
+    <section id="home" className="home-hero relative isolate overflow-hidden min-h-screen flex items-center">
       <div className="absolute inset-0 -z-10 opacity-40">
         <div className="pointer-events-none h-full w-full subtle-pattern" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 py-20 lg:py-24">
+      <div className="home-hero-content relative z-10 mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 pt-20 pb-16 lg:pt-24 lg:pb-20">
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center hero-grid">
           <motion.div initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.36em] text-[var(--text-muted)]">Hello, I am</p>
+            <p className="home-kicker text-[10px] font-semibold uppercase tracking-[0.36em] text-[var(--text-muted)]">Hello, I am</p>
 
-            <h1 className="mt-4 text-4xl font-black leading-[0.9] tracking-[-0.06em] text-[var(--text-primary)] sm:text-5xl lg:text-[5rem]">
+            <h1 className="home-title mt-4 text-4xl font-black leading-[0.9] tracking-[-0.06em] text-[var(--text-primary)] sm:text-5xl lg:text-[5rem]">
               Shalini<br />Bangamuwage
             </h1>
 
-            <div className="mt-5 flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-[var(--text-secondary)]">
+            <div className="home-specialties mt-5 flex flex-wrap items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-[var(--text-secondary)]">
               <span className="rounded-full border border-[var(--border)] px-2.5 py-1.5">Full-Stack</span>
               <span className="rounded-full border border-[var(--border)] px-2.5 py-1.5">AI Products</span>
               <span className="rounded-full border border-[var(--border)] px-2.5 py-1.5">Cloud Systems</span>

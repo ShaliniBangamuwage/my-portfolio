@@ -1,4 +1,36 @@
 /* Component-scoped styles for IDEHero visual */
+.home-hero {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  background:
+    radial-gradient(circle at 70% 24%, color-mix(in srgb, var(--accent) 11%, transparent), transparent 30%),
+    color-mix(in srgb, var(--bg-primary) 86%, transparent) !important;
+}
+
+.home-hero-content {
+  min-height: 100svh;
+}
+
+.home-kicker {
+  color: var(--accent) !important;
+}
+
+.home-title {
+  text-shadow: 0 0 42px color-mix(in srgb, var(--accent) 9%, transparent);
+}
+
+.home-specialties span {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border)) !important;
+  color: var(--text-primary);
+  transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+}
+
+.home-specialties span:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent);
+  background: var(--hover);
+}
+
 .hero-section {
   min-height: 100svh;
   width: 100%;
@@ -35,6 +67,8 @@
   padding: 0;
   overflow: visible;
   animation: heroFloat 14s ease-in-out infinite alternate;
+  transform-style: preserve-3d;
+  perspective: 900px;
 }
 
 .ide-portrait-frame {
@@ -44,9 +78,16 @@
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-  box-shadow: 0 22px 70px rgba(0,0,0,0.42);
+  border: 8px solid rgba(216,245,106,0.9);
+  background: linear-gradient(180deg, rgba(216,245,106,0.18), rgba(255,255,255,0.02));
+  box-shadow: 0 22px 70px rgba(0,0,0,0.42), 22px 24px 0 rgba(216,245,106,0.16), inset 0 0 0 1px rgba(255,255,255,0.3);
+  transform: translateZ(30px) rotate(3deg);
+  transition: transform 500ms cubic-bezier(.2,.75,.25,1), box-shadow 500ms ease;
+}
+
+.ide-portrait-system:hover .ide-portrait-frame {
+  transform: translateZ(62px) rotate(-2deg) scale(1.03);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5), 30px 30px 0 rgba(216,245,106,0.2), inset 0 0 0 1px rgba(255,255,255,0.3);
 }
 
 .ide-portrait-photo {
@@ -56,13 +97,14 @@
   object-fit: cover;
   object-position: center 18%;
   filter: grayscale(100%) contrast(1.08) brightness(0.9);
+  mix-blend-mode: luminosity;
 }
 
 .ide-orbit {
   position: absolute;
   left: 50%;
   top: 50%;
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(216,245,106,0.38);
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
@@ -77,7 +119,7 @@
 .ide-orbit-two {
   width: 118%;
   height: 82%;
-  transform: translate(-50%, -50%) rotate(-18deg);
+  transform: translate(-50%, -50%) rotate(-18deg) translateZ(-20px);
 }
 
 .ide-code-badge {
@@ -138,8 +180,8 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 8px;
-  color: var(--text-secondary);
-  font-family: monospace;
+  color: var(--accent);
+  font-family: 'DM Mono', monospace;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.2em;

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 :root {
   color-scheme: light;
-  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 /* Footer: premium monochrome editorial styles */
@@ -151,7 +151,7 @@ body {
   min-height: 100vh;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: 'Space Grotesk', sans-serif;
   letter-spacing: 0.01em;
   word-spacing: 0.04em;
   text-rendering: optimizeLegibility;
@@ -162,6 +162,103 @@ body {
     linear-gradient(180deg, #0d0d0d 0%, #101010 28%, #0a0a0a 100%);
   background-attachment: fixed;
   background-size: cover;
+}
+
+/* Shared editorial system */
+:root,
+:root[data-theme='dark'],
+html.dark {
+  --bg-primary: #101110;
+  --bg-secondary: #171917;
+  --card-bg: #191c19;
+  --surface: #191c19;
+  --surface-elevated: #202420;
+  --surface-hover: #292e29;
+  --border-color: rgba(239, 241, 232, 0.16);
+  --border: rgba(239, 241, 232, 0.16);
+  --text-primary: #f0f1e9;
+  --text-secondary: #aeb4aa;
+  --text-muted: #788078;
+  --text-inverse: #101110;
+  --accent: #d8f56a;
+  --accent-dark: #b7d94c;
+  --button-primary: #d8f56a;
+  --button-primary-text: #101110;
+  --hover: rgba(216, 245, 106, 0.08);
+  --shadow-small: 0 14px 30px rgba(0, 0, 0, 0.22);
+  --shadow-large: 0 28px 80px rgba(0, 0, 0, 0.38);
+}
+
+body {
+  letter-spacing: 0;
+  word-spacing: 0;
+  background-color: var(--bg-primary);
+  background-image:
+    linear-gradient(rgba(240, 241, 233, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240, 241, 233, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 72% 0%, rgba(216, 245, 106, 0.11), transparent 28%),
+    linear-gradient(145deg, #101110 0%, #151815 55%, #0c0d0c 100%);
+  background-size: 64px 64px, 64px 64px, 100% 100%, 100% 100%;
+}
+
+body::before {
+  opacity: 0.2;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+section {
+  padding-top: clamp(4.5rem, 9vw, 9rem);
+  padding-bottom: clamp(4.5rem, 9vw, 9rem);
+  background: linear-gradient(180deg, rgba(16, 17, 16, 0.2), rgba(16, 17, 16, 0.72));
+}
+
+section + section {
+  border-top: 1px solid var(--border-color);
+  background: rgba(16, 17, 16, 0.58);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.045em;
+}
+
+button, input, textarea, .about-meta, .section-header, .issue-number,
+.ide-tech-list, .archive-title {
+  font-family: 'DM Mono', monospace;
+}
+
+.section-header {
+  color: var(--accent) !important;
+  letter-spacing: 0.18em !important;
+}
+
+.paper-card,
+.about-stage,
+.about-principle,
+.about-education-panel,
+.about-focus-item,
+.about-metric,
+.skills-panel,
+.about-story {
+  border-radius: 2px !important;
+  border-color: var(--border-color) !important;
+  background: linear-gradient(145deg, rgba(38, 43, 37, 0.86), rgba(20, 22, 20, 0.82)) !important;
+  box-shadow: var(--shadow-small) !important;
+}
+
+.btn-primary,
+.btn-secondary {
+  border-radius: 0 !important;
+  transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; }
 }
 
 p, li, span, a, button, input, textarea {
@@ -239,6 +336,76 @@ textarea:focus-visible {
   margin-right: 0.4rem;
   margin-top: 0.1rem;
   color: var(--text-primary);
+}
+
+/* Keep the light theme readable after the shared dark editorial layer. */
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg-primary: #f3f1eb;
+  --bg-secondary: #e7e4dc;
+  --card-bg: #fbfaf6;
+  --surface: #fbfaf6;
+  --surface-elevated: #ffffff;
+  --surface-hover: #ebe8df;
+  --border-color: rgba(24, 26, 22, 0.16);
+  --border: rgba(24, 26, 22, 0.16);
+  --text-primary: #181a16;
+  --text-secondary: #51564d;
+  --text-muted: #74796f;
+  --text-inverse: #f7f6ef;
+  --accent: #668c16;
+  --accent-dark: #4e7010;
+  --button-primary: #181a16;
+  --button-primary-text: #f7f6ef;
+  --hover: rgba(102, 140, 22, 0.1);
+  --shadow-small: 0 14px 30px rgba(38, 40, 30, 0.1);
+  --shadow-large: 0 28px 80px rgba(38, 40, 30, 0.16);
+}
+
+:root[data-theme='light'] body {
+  background-color: var(--bg-primary);
+  background-image:
+    linear-gradient(rgba(24, 26, 22, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 26, 22, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 72% 0%, rgba(177, 207, 92, 0.2), transparent 28%),
+    linear-gradient(145deg, #f3f1eb 0%, #ebe9e1 55%, #e2e5d9 100%);
+}
+
+:root[data-theme='light'] body::before {
+  background:
+    linear-gradient(rgba(24, 26, 22, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 26, 22, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.75), transparent 18%);
+  opacity: 0.5;
+}
+
+:root[data-theme='light'] section {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(243, 241, 235, 0.7));
+}
+
+:root[data-theme='light'] section + section {
+  border-top-color: var(--border-color);
+  background: rgba(231, 228, 220, 0.38);
+}
+
+:root[data-theme='light'] .paper-card,
+:root[data-theme='light'] .about-stage,
+:root[data-theme='light'] .about-principle,
+:root[data-theme='light'] .about-education-panel,
+:root[data-theme='light'] .about-focus-item,
+:root[data-theme='light'] .about-metric,
+:root[data-theme='light'] .skills-panel,
+:root[data-theme='light'] .about-story {
+  background: linear-gradient(145deg, rgba(255, 255, 252, 0.9), rgba(235, 233, 225, 0.92)) !important;
+  box-shadow: var(--shadow-small) !important;
+}
+
+:root[data-theme='light'] .section-header {
+  color: var(--accent-dark) !important;
+}
+
+:root[data-theme='light'] .ide-portrait-frame {
+  box-shadow: 18px 22px 0 rgba(102, 140, 22, 0.16), 0 30px 80px rgba(38, 40, 30, 0.25), inset 0 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
 @layer utilities {
@@ -418,3 +585,93 @@ textarea:focus-visible {
     .skills-nav-item { min-width: 160px; flex:0 0 auto; }
     .skills-section-grid { grid-template-columns: 1fr; }
   }
+
+/* Final theme contract: both modes keep the green/yellow identity without dark-only surfaces. */
+:root[data-theme='dark'],
+html.dark {
+  color-scheme: dark;
+  --bg-primary: #101310;
+  --bg-secondary: #191d18;
+  --card-bg: #1d221c;
+  --surface: #1d221c;
+  --surface-elevated: #252b23;
+  --surface-hover: #30382e;
+  --border-color: rgba(222, 238, 186, 0.18);
+  --border: rgba(222, 238, 186, 0.18);
+  --border-strong: rgba(216, 245, 106, 0.62);
+  --text-primary: #f2f5e9;
+  --text-secondary: #b4bdad;
+  --text-muted: #7d8979;
+  --text-inverse: #101310;
+  --accent: #d8f56a;
+  --accent-dark: #a9c940;
+  --hover: rgba(216, 245, 106, 0.1);
+  --shadow-small: 0 14px 32px rgba(0, 0, 0, 0.26);
+  --shadow-large: 0 30px 80px rgba(0, 0, 0, 0.42);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg-primary: #f4f6ed;
+  --bg-secondary: #e7ecdb;
+  --card-bg: #fbfcf7;
+  --surface: #fbfcf7;
+  --surface-elevated: #ffffff;
+  --surface-hover: #edf3dc;
+  --border-color: rgba(36, 53, 25, 0.2);
+  --border: rgba(36, 53, 25, 0.2);
+  --border-strong: rgba(82, 116, 18, 0.64);
+  --text-primary: #172116;
+  --text-secondary: #4f6048;
+  --text-muted: #71806a;
+  --text-inverse: #f8faef;
+  --accent: #6d9417;
+  --accent-dark: #4f7110;
+  --hover: rgba(109, 148, 23, 0.1);
+  --shadow-small: 0 14px 32px rgba(49, 70, 31, 0.12);
+  --shadow-large: 0 30px 80px rgba(49, 70, 31, 0.18);
+}
+
+body {
+  background-color: var(--bg-primary);
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--text-primary) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--text-primary) 5%, transparent) 1px, transparent 1px),
+    radial-gradient(circle at 78% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 32%),
+    linear-gradient(145deg, var(--bg-primary), var(--bg-secondary));
+  background-size: 64px 64px, 64px 64px, 100% 100%, 100% 100%;
+}
+
+section {
+  background: color-mix(in srgb, var(--bg-primary) 82%, transparent);
+}
+
+section + section {
+  border-top-color: var(--border-color);
+  background: color-mix(in srgb, var(--bg-secondary) 54%, transparent);
+}
+
+.paper-card,
+.about-stage,
+.about-principle,
+.about-education-panel,
+.about-focus-item,
+.about-metric,
+.skills-panel,
+.about-story {
+  background: linear-gradient(145deg, color-mix(in srgb, var(--surface-elevated) 88%, transparent), color-mix(in srgb, var(--surface) 94%, transparent)) !important;
+  border-color: var(--border-color) !important;
+  box-shadow: var(--shadow-small) !important;
+}
+
+.section-header {
+  border-bottom-color: var(--border-color) !important;
+}
+
+.section-header::after {
+  background: var(--accent) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
