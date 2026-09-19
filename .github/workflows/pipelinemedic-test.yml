@@ -14,7 +14,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: PipelineMedic failure test
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pytest
+        run: pip install pytest
+
+      - name: Create failing test
         run: |
-          echo "PipelineMedic CI failure test"
-          exit 1
+          mkdir -p tests
+          printf 'def test_pipeline_medic_failure():\n    assert 1 == 2\n' > tests/test_pipeline_medic.py
+
+      - name: Run pytest
+        run: pytest -q tests/test_pipeline_medic.py
