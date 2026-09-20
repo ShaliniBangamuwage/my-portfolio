@@ -1,0 +1,19 @@
+name: PipelineMedic AI Fallback Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ai-fallback-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Simulate custom deployment failure
+        run: |
+          echo "Starting deployment validation..."
+          echo "Deployment target 'staging-eu' rejected the release because service manifest revision 'v42' is incompatible with the currently deployed gateway contract 'v41'."
+          echo "The release requires gateway contract v42 before this application revision can be deployed."
+          exit 1
