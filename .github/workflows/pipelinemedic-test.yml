@@ -1,13 +1,10 @@
-name: PipelineMedic Test
+name: PipelineMedic Dependency Test
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
 
 jobs:
-  test:
+  dependency-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,13 +16,5 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install pytest
-        run: pip install pytest
-
-      - name: Create failing test
-        run: |
-          mkdir -p tests
-          printf 'def test_pipeline_medic_failure():\n    assert 1 == 2\n' > tests/test_pipeline_medic.py
-
-      - name: Run pytest
-        run: pytest -q tests/test_pipeline_medic.py
+      - name: Install invalid dependency
+        run: pip install pipelinemedic-package-that-does-not-exist-987654
