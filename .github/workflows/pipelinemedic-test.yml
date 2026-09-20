@@ -1,19 +1,15 @@
-name: PipelineMedic Configuration Test
+name: PipelineMedic Unknown Failure Test
 
 on:
   workflow_dispatch:
 
 jobs:
-  config-test:
+  unknown-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Validate required configuration
-        run: |
-          if [ -z "${PIPELINEMEDIC_REQUIRED_ENDPOINT:-}" ]; then
-            echo "Missing required environment variable: PIPELINEMEDIC_REQUIRED_ENDPOINT"
-            exit 1
-          fi
+      - name: Run opaque CI command
+        run: exit 1
