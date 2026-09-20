@@ -25,4 +25,6 @@ jobs:
           printf 'const total: number = "PipelineMedic";\nconsole.log(total);\n' > app.ts
 
       - name: Compile TypeScript application
-        run: npx tsc compiler-test/app.ts --noEmit
+        run: |
+          cd compiler-test
+          npx tsc app.ts --noEmit
