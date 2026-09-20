@@ -1,20 +1,28 @@
-name: PipelineMedic Dependency Test
+name: PipelineMedic TypeScript Build Test
 
 on:
   workflow_dispatch:
 
 jobs:
-  dependency-test:
+  build-test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
+          node-version: "22"
 
-      - name: Install invalid dependency
-        run: pip install pipelinemedic-package-that-does-not-exist-987654
+      - name: Create TypeScript project
+        run: |
+          mkdir compiler-test
+          cd compiler-test
+          npm init -y
+          npm install typescript
+          printf 'const total: number = "PipelineMedic";\nconsole.log(total);\n' > app.ts
+
+      - name: Compile TypeScript application
+        run: npx tsc compiler-test/app.ts --noEmit
